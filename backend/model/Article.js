@@ -9,6 +9,10 @@ const Article = seq.define('Article', {
         allowNull: false,
         primaryKey : true
     },
+    image : {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
 });
 
 module.exports = Article;
