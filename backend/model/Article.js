@@ -7,7 +7,8 @@ const Article = seq.define('Article', {
     id : {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey : true
+        primaryKey : true,
+        autoIncrement: true
     },
     image : {
         type: DataTypes.STRING,

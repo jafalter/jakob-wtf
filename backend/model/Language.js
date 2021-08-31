@@ -8,7 +8,8 @@ const Language = seq.define('Language', {
     id : {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey : true
+        primaryKey : true,
+        autoIncrement: true
     },
     value : {
         type: DataTypes.STRING,

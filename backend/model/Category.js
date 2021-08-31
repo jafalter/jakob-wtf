@@ -10,7 +10,8 @@ const Category = seq.define('Category', {
     id : {
         type : DataTypes.INTEGER,
         allowNull : false,
-        primaryKey : true
+        primaryKey : true,
+        autoIncrement: true
     },
     value : {
         type: DataTypes.STRING,

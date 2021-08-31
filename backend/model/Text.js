@@ -11,7 +11,8 @@ const Text = seq.define('Text', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     value: {
         type: DataTypes.STRING,
