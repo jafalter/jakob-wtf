@@ -4,7 +4,7 @@ const Factory = require('./lib/Factory');
 const Language = require('./model/Language');
 const Category = require('./model/Category');
 const Text = require('./model/Text');
-const Resource = require('./model/Resources');
+const Resource = require('./model/Resource');
 const Article = require('./model/Article');
 const app = require('./app');
 

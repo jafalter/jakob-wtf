@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const Factory = require('../lib/Factory');
-const Text = require('./Text');
 
 const seq = Factory.getORM();
 
@@ -16,7 +15,5 @@ const Language = seq.define('Language', {
         allowNull: false
     }
 });
-
-Language.hasMany(Text, { foreignKey : 'lang'});
 
 module.exports = Language;

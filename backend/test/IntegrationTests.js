@@ -1,5 +1,6 @@
 const assert = require('assert');
 const supertest = require('supertest');
+const app = require('../app');
 
 const Factory = require('../lib/Factory');
 const TestUtils = require('./TestUtils');
@@ -18,6 +19,20 @@ describe('Integration Tests', () => {
     });
 
     it('Should query all articles', async () => {
+        const r = await supertest(app)
+            .get('/api/articles')
+            .set('Authorization', '123')
+            .expect(200);
+        const parsed = JSON.parse(r.text);
+        console.log("Hi");
+    });
+
+    it('Should query all resources', async () => {
+        const r = await supertest(app)
+            .get('/api/resources')
+            .set('Authorization', '123')
+            .expect(200);
+        const parsed = JSON.parse(r.text);
         console.log("Hi");
     });
 
