@@ -18,7 +18,7 @@ const RegionalText = seq.define('RegionalText', {
         allowNull: false
     }
 });
-Text.hasMany(RegionalText, {foreignKey: 'textId'});
-Language.hasMany(RegionalText, { foreignKey : 'languageId'});
+RegionalText.belongsTo(Text, {as: 'text'});
+RegionalText.belongsTo(Language, {as: 'language'});
 
 module.exports = RegionalText;

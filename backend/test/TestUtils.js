@@ -37,24 +37,29 @@ class TestUtils {
         const txt = await Text.create({
             id: null
         });
-        await RegionalText.create({
+        const r1 = await RegionalText.create({
             id: null,
             value: 'Bitcoin’s Energy Usage Isn’t a Problem. Here’s Why.',
-            textId: txt.id,
-            languageId: en.id
         });
-        await RegionalText.create({
+        r1.setText(txt);
+        r1.setLanguage(en);
+        await r1.save();
+
+        const r2 = await RegionalText.create({
             id: null,
             value: 'Der Energieverbrauch von Bitcoin ist kein Problem. Hier ist der Grund.',
-            textId: txt.id,
-            languageId: de.id
         });
-        await Resource.create({
+        r2.setText(txt);
+        r2.setLanguage(de);
+        await r2.save();
+
+        const r = await Resource.create({
             id: null,
-            url: 'https://www.lynalden.com/bitcoin-energy/',
-            categoryId: economics.id,
-            titleId: txt.id
+            url: 'https://www.lynalden.com/bitcoin-energy/'
         });
+        r.setCategory(economics);
+        r.setTitle(txt);
+        await r.save();
 
         // Create a Article
         const title = await Text.create({
@@ -66,52 +71,64 @@ class TestUtils {
         const key = await Text.create({
             id: null
         });
-        await RegionalText.create({
+        const r4 = await RegionalText.create({
             id: null,
             value: 'The Weston Price Study',
-            textId: title.id,
-            languageId: en.id
         });
-        await RegionalText.create({
+        r4.setText(title);
+        r4.setLanguage(en);
+        await r4.save();
+
+        const r5 = await RegionalText.create({
             id: null,
             value: 'Die Weston Price Studie',
-            textId: title.id,
-            languageId: de.id
         });
-        await RegionalText.create({
+        r5.setText(title);
+        r5.setLanguage(de);
+        await r5.save();
+
+        const r6 = await RegionalText.create({
             id: null,
             value: 'In this article I discuss the Weston Price Study',
-            textId: subtext.id,
-            languageId: en.id
         });
-        await RegionalText.create({
+        r6.setText(subtext);
+        r6.setLanguage(en);
+        await r6.save();
+
+        const r7 = await RegionalText.create({
             id: null,
             value: 'In diesem Arikel diskutiere ich die Weston Price Studie',
-            textId: subtext.id,
-            languageId: de.id
         });
-        await RegionalText.create({
+        r7.setText(subtext);
+        r7.setLanguage(de);
+        await r7.save();
+
+        const r8 = await RegionalText.create({
             id: null,
             value: 'TheWestonPriceStudy',
-            textId: key.id,
-            languageId: en.id
         });
-        await RegionalText.create({
+        r8.setText(key);
+        r8.setLanguage(en);
+        await r8.save();
+
+        const r9 = await RegionalText.create({
             id: null,
             value: 'DieWestonPriceStudie',
-            textId: key.id,
-            languageId: de.id
         });
-        await Article.create({
+        r9.setText(key);
+        r9.setLanguage(de);
+        await r9.save();
+
+        const a = await Article.create({
             id: null,
             image: 'price.jpg',
             file: 'price.html',
-            categoryId: health.id,
-            titleId: title.id,
-            subtextId: subtext.id,
-            keyId: key.id
         });
-        console.log("hi");
+        a.setCategory(health);
+        a.setTitle(title);
+        a.setSubtext(subtext);
+        a.setKey(key);
+        await a.save();
     }
 
 }

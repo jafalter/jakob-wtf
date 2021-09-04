@@ -23,10 +23,10 @@ const Article = seq.define('Article', {
     }
 });
 
-Category.hasMany(Article, { as: 'category', foreignKey : 'categoryId'});
-Text.hasMany(Article, {foreignKey: 'titleId'});
-Text.hasMany(Article, {foreignKey: 'subtextId'});
-Text.hasMany(Article, {foreignKey: 'keyId'});
+Article.belongsTo(Category, { as: 'category' });
+Article.belongsTo(Text, { as: 'title' });
+Article.belongsTo(Text, { as: 'subtext' });
+Article.belongsTo(Text, { as: 'key'});
 
 module.exports = Article;
 

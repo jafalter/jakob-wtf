@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const {DataTypes} = require('sequelize');
 const Factory = require('../lib/Factory');
 
 const Category = require('./Category');
@@ -7,9 +7,9 @@ const Text = require('./Text');
 const seq = Factory.getORM();
 
 const Resource = seq.define('Resource', {
-    id : {
-        type : DataTypes.INTEGER,
-        primaryKey : true,
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
         autoIncrement: true
     },
     url: {
@@ -17,7 +17,7 @@ const Resource = seq.define('Resource', {
     }
 });
 
-Category.hasMany(Resource, { foreignKey : 'categoryId'});
-Text.hasMany(Resource, {foreignKey: 'titleId'});
+Resource.belongsTo(Category, {as: 'category'});
+Resource.belongsTo(Text, {as: 'title'});
 
 module.exports = Resource;
