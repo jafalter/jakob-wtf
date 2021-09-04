@@ -41,7 +41,6 @@ class TestUtils {
             id: null,
             value: 'Bitcoin’s Energy Usage Isn’t a Problem. Here’s Why.',
         });
-        r1.setText(txt);
         r1.setLanguage(en);
         await r1.save();
 
@@ -49,9 +48,12 @@ class TestUtils {
             id: null,
             value: 'Der Energieverbrauch von Bitcoin ist kein Problem. Hier ist der Grund.',
         });
-        r2.setText(txt);
         r2.setLanguage(de);
         await r2.save();
+
+        txt.addRegionalText(r1);
+        txt.addRegionalText(r2);
+        await txt.save();
 
         const r = await Resource.create({
             id: null,
@@ -75,7 +77,6 @@ class TestUtils {
             id: null,
             value: 'The Weston Price Study',
         });
-        r4.setText(title);
         r4.setLanguage(en);
         await r4.save();
 
@@ -83,15 +84,16 @@ class TestUtils {
             id: null,
             value: 'Die Weston Price Studie',
         });
-        r5.setText(title);
         r5.setLanguage(de);
         await r5.save();
+        title.addRegionalText(r4);
+        title.addRegionalText(r5);
+        await title.save();
 
         const r6 = await RegionalText.create({
             id: null,
             value: 'In this article I discuss the Weston Price Study',
         });
-        r6.setText(subtext);
         r6.setLanguage(en);
         await r6.save();
 
@@ -99,15 +101,17 @@ class TestUtils {
             id: null,
             value: 'In diesem Arikel diskutiere ich die Weston Price Studie',
         });
-        r7.setText(subtext);
         r7.setLanguage(de);
         await r7.save();
+
+        subtext.addRegionalText(r6);
+        subtext.addRegionalText(r7);
+        await subtext.save();
 
         const r8 = await RegionalText.create({
             id: null,
             value: 'TheWestonPriceStudy',
         });
-        r8.setText(key);
         r8.setLanguage(en);
         await r8.save();
 
@@ -115,9 +119,12 @@ class TestUtils {
             id: null,
             value: 'DieWestonPriceStudie',
         });
-        r9.setText(key);
         r9.setLanguage(de);
         await r9.save();
+
+        key.addRegionalText(r8);
+        key.addRegionalText(r9);
+        await key.save();
 
         const a = await Article.create({
             id: null,
