@@ -1,15 +1,20 @@
+const fs = require('fs');
+
 const Logger = require('./Logger');
 
 const DEFAULT_AUTH = '123';
 const DEFAULT_LOG_LVL =  Logger.DEBUG;
 const DEFAULT_DB = 'sqlite::memory:';
 
+const SECRET_PATH = '/run/secrets/';
+const UTF8 = 'utf-8';
+
 class Config {
 
     static getAuth() {
-        const env = process.env;
-        if( env.JAKOB_AUTH ) {
-            return env.JAKOB_AUTH;
+        const path = SECRET_PATH + 'AUTH';
+        if( fs.existsSync(path) ) {
+            return fs.readFileSync(path, UTF8);
         }
         else {
             return DEFAULT_AUTH;
@@ -18,8 +23,9 @@ class Config {
 
     static getLogLevel() {
         const env = process.env;
-        if( env.JAKOB_LOG_LVL ) {
-            switch ( env.JAKOB_LOG_LVL.toUpperCase() ) {
+        const path = SECRET_PATH + 'LOG_LVL';
+        if( fs.existsSync(path) ) {
+            switch ( fs.readFileSync(path, UTF8).toUpperCase() ) {
                 case 'DEBUG' :
                     return Logger.DEBUG;
                 case 'INFO' :
@@ -38,9 +44,9 @@ class Config {
     }
 
     static getDbCon() {
-        const env = process.env;
-        if( env.JAKOB_DB ) {
-            return env.JAKOB_DB;
+        const path = SECRET_PATH + 'DB';
+        if( fs.existsSync(path) ) {
+            return fs.readFileSync(path, UTF8);
         }
         else {
             return DEFAULT_DB;
