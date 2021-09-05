@@ -24,7 +24,21 @@ describe('Integration Tests', () => {
             .set('Authorization', '123')
             .expect(200);
         const parsed = JSON.parse(r.text);
-        console.log("Hi");
+        assert(parsed.length === 1);
+        const article = parsed[0];
+        assert(article.category);
+        assert(article.title);
+        assert(article.title.regionalText.length === 2);
+        assert(article.subtext);
+        assert(article.subtext.regionalText.length === 2);
+        assert(article.key);
+        assert(article.key.regionalText.length === 2);
+    });
+
+    it('Query articles should fail without Authorization', async () => {
+        const r = await supertest(app)
+            .get('/api/articles')
+            .expect(401);
     });
 
     it('Should query all resources', async () => {
@@ -33,7 +47,48 @@ describe('Integration Tests', () => {
             .set('Authorization', '123')
             .expect(200);
         const parsed = JSON.parse(r.text);
-        console.log("Hi");
+        assert(parsed.length === 1);
+        const res = parsed[0];
+        assert(res.category);
+        assert(res.title);
+        assert(res.title.regionalText.length === 2);
+    });
+
+    it('Query resources should fail without Authorization', async () => {
+        const r = await supertest(app)
+            .get('/api/resources')
+            .expect(401);
+    });
+
+    it('Should find the article with english key', async () => {
+        const r = await supertest(app)
+            .get('/api/article/TheWestonPriceStudy')
+            .set('Authorization', '123')
+            .expect(200);
+        const parsed = JSON.parse(r.text);
+        assert(parsed.id === 1);
+    });
+
+    it('Should find the article with german key', async () => {
+        const r = await supertest(app)
+            .get('/api/article/DieWestonPriceStudie')
+            .set('Authorization', '123')
+            .expect(200);
+        const parsed = JSON.parse(r.text);
+        assert(parsed.id === 1);
+    });
+
+    it('Should not find anything with an key', async () => {
+        const r = await supertest(app)
+            .get('/api/article/DieWostonPriceStudie')
+            .set('Authorization', '123')
+            .expect(404);
+    });
+
+    it('query article by key should fail without Authorization', async () => {
+        const r = await supertest(app)
+            .get('/api/article/DieWestonPriceStudie')
+            .expect(401);
     });
 
 });

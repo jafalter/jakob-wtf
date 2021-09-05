@@ -128,8 +128,7 @@ class TestUtils {
 
         const a = await Article.create({
             id: null,
-            image: 'price.jpg',
-            file: 'price.html',
+            image: 'price.jpg'
         });
         a.setCategory(health);
         a.setTitle(title);
