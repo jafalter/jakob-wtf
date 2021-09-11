@@ -12,7 +12,7 @@ const UTF8 = 'utf-8';
 class Config {
 
     static getAuth() {
-        const path = SECRET_PATH + 'AUTH';
+        const path = SECRET_PATH + 'auth';
         if( fs.existsSync(path) ) {
             return fs.readFileSync(path, UTF8);
         }
@@ -22,8 +22,7 @@ class Config {
     }
 
     static getLogLevel() {
-        const env = process.env;
-        const path = SECRET_PATH + 'LOG_LVL';
+        const path = SECRET_PATH + 'log_lvl';
         if( fs.existsSync(path) ) {
             switch ( fs.readFileSync(path, UTF8).toUpperCase() ) {
                 case 'DEBUG' :
@@ -44,7 +43,7 @@ class Config {
     }
 
     static getDbCon() {
-        const path = SECRET_PATH + 'DB';
+        const path = SECRET_PATH + 'db';
         if( fs.existsSync(path) ) {
             return fs.readFileSync(path, UTF8);
         }
