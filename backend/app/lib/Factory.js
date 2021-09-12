@@ -41,7 +41,6 @@ class Factory {
                 if (Config.getLogLevel() !== Logger.DEBUG) {
                     opts.logging = false;
                 }
-                this.getLogger().info("Database options", opts);
                 sequelize = new Sequelize(Config.getDBDatabase(), Config.getDBUser(), Config.getDBPass(), opts);
             }
         }
