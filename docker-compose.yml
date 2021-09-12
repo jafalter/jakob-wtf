@@ -35,6 +35,22 @@ services:
     ports:
       - "80:80"
       - "443:443"
+secrets:
+  auth:
+    file: /opt/secrets/auth
+  db_db:
+    file: /opt/secrets/db_db
+  db_host:
+    file: /opt/secrets/db_host
+  db_pass:
+    file: /opt/secrets/db_pass
+  db_port:
+    file: /opt/secrets/db_port
+  db_user:
+    file: /opt/secrets/db_user
+  log_lvl:
+    file: /opt/secrets/log_lvl
+
 
 
 
