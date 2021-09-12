@@ -1,11 +1,11 @@
 
 const Factory = require('./lib/Factory');
 
-const Language = require('./model/Language');
-const Category = require('./model/Category');
-const Text = require('./model/Text');
-const Resource = require('./model/Resource');
-const Article = require('./model/Article');
+const Language = require('./persistence/models/Language');
+const Category = require('./persistence/models/Category');
+const Text = require('./persistence/models/Text');
+const Resource = require('./persistence/models/Resource');
+const Article = require('./persistence/models/Article');
 const app = require('./app');
 
 const logger = Factory.getLogger();

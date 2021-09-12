@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const Factory = require('../lib/Factory');
+const Factory = require('../../lib/Factory');
 
 const Category = require('./Category');
 const Text = require('./Text');

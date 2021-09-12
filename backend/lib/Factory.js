@@ -23,19 +23,27 @@ class Factory {
      */
     static getORM() {
         if (sequelize === null) {
-            const opts = {
-                pool: {
-                    max: 5,
-                    min: 0,
-                    acquire: 30000,
-                    idle: 10000
-                },
-                dialect: 'mariadb'
-            };
-            if (Config.getLogLevel() !== Logger.DEBUG) {
-                opts.logging = false;
+            if( Config.getEnv() !== 'production' ) {
+                sequelize = new Sequelize(Config.getTestDb())
             }
-            sequelize = new Sequelize(Config.getDbCon(), opts);
+            else {
+                const opts = {
+                    pool: {
+                        max: 5,
+                        min: 0,
+                        acquire: 30000,
+                        idle: 10000
+                    },
+                    dialect: 'mariadb',
+                    host: Config.getDBHost(),
+                    port: Config.getDBPort()
+                };
+                if (Config.getLogLevel() !== Logger.DEBUG) {
+                    opts.logging = false;
+                }
+                logger.info("Database options", opts);
+                sequelize = new Sequelize(Config.getDBDatabase(), Config.getDBUser(), Config.getDBPass(), opts);
+            }
         }
         return sequelize;
     }

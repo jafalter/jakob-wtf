@@ -1,5 +1,5 @@
 const {DataTypes} = require('sequelize');
-const Factory = require('../lib/Factory');
+const Factory = require('../../lib/Factory');
 
 const Category = require('./Category');
 const Text = require('./Text');
@@ -13,6 +13,9 @@ const Resource = seq.define('Resource', {
         autoIncrement: true
     },
     url: {
+        type: DataTypes.TEXT
+    },
+    description: {
         type: DataTypes.TEXT
     }
 });

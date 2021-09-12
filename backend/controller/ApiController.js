@@ -1,7 +1,7 @@
-const Articles = require('../model/Article');
-const Resource = require('../model/Resource');
-const RegionalText = require('../model/RegionalText');
-const Text = require('../model/Text');
+const Articles = require('../persistence/models/Article');
+const Resource = require('../persistence/models/Resource');
+const RegionalText = require('../persistence/models/RegionalText');
+const Text = require('../persistence/models/Text');
 
 class ApiController {
 

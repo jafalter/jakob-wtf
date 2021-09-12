@@ -1,9 +1,9 @@
-const Language = require('../model/Language');
-const Category = require('../model/Category');
-const Text = require('../model/Text');
-const Resource = require('../model/Resource');
-const Article = require('../model/Article');
-const RegionalText = require('../model/RegionalText');
+const Language = require('../persistence/models/Language');
+const Category = require('../persistence/models/Category');
+const Text = require('../persistence/models/Text');
+const Resource = require('../persistence/models/Resource');
+const Article = require('../persistence/models/Article');
+const RegionalText = require('../persistence/models/RegionalText');
 
 class TestUtils {
 
