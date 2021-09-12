@@ -7,7 +7,11 @@ services:
     secrets:
       - auth
       - log_lvl
-      - db
+      - db_db
+      - db_pass
+      - db_user
+      - db_port
+      - db_host
     environment:
       NODE_ENV: production
   frontend:

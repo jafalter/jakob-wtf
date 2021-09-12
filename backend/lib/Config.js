@@ -28,7 +28,7 @@ class Config {
     }
 
     static getLogLevel() {
-        const path = SECRET_PATH + 'log_lvl';
+            const path = SECRET_PATH + 'log_lvl';
         if( fs.existsSync(path) ) {
             switch ( fs.readFileSync(path, UTF8).toUpperCase() ) {
                 case 'DEBUG' :
