@@ -33,8 +33,8 @@ services:
       - /var/www/jakob.wtf:/var/www
       - /etc/letsencrypt/:/etc/letsencrypt/
     ports:
-      - "80:80"
-      - "443:443"
+      - "144.91.87.46:80:80"
+      - "144.91.87.46:443:443"
 secrets:
   auth:
     file: /opt/secrets/auth
