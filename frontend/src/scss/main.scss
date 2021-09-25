@@ -19,3 +19,20 @@ body {
   margin: 0 auto;
   background-color: $color-bg;
 }
+
+header {
+  height: 250px;
+  width: 100%;
+  background-color: $color-bg-light;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.hl-decoration {
+  font-size: $font-hl;
+}
+
+.highlight {
+  color: $color-highlight;
+}
