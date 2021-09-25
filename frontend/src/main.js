@@ -1,7 +1,10 @@
+import main_styles from './scss/main.scss';
+
 /* Polyfills */
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import 'whatwg-fetch'
+
 
 import Factory from './lib/Factory';
 
