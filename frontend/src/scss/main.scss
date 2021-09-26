@@ -18,10 +18,16 @@ body {
   width: 100%;
   margin: 0 auto;
   background-color: $color-bg;
+  flex-wrap: wrap;
 }
 
-header {
-  height: 250px;
+a {
+  text-decoration: none;
+  color: $font-color-light;
+}
+
+header#deskhead {
+  height: 100px;
   width: 100%;
   background-color: $color-bg-light;
   display: flex;
@@ -29,10 +35,52 @@ header {
   align-content: center;
 }
 
+.head-elem {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.head-wrap {
+  width: 35%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.head-wrap-right {
+  justify-content: space-evenly;
+}
+
+.h-icon {
+  margin: 10%;
+}
+
+#deskhead-hl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: center;
+  align-content: center;
+}
+
+header#mobhead {
+  display: none;
+}
+
 .hl-decoration {
   font-size: $font-hl;
+  flex-basis: 100%;
+  text-align: right;
 }
 
 .highlight {
   color: $color-highlight;
+}
+
+@media screen and (max-width: $max-width-s) {
+
 }
