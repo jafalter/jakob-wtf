@@ -16,7 +16,19 @@ const renderIndex = async () => {
     console.log("Found " + articles.length + " articles");
 };
 
-renderIndex().then(() => {
+const renderArticle = async () => {
+    const split = window.location.href.split('/');
+    const key = split[split.length-1];
+    console.log("Rendering article " + key);
+}
+
+// Render function based on current page
+let render = renderIndex;
+
+if( window.location.href.includes('article') ) {
+    render = renderArticle;
+}
+render().then(() => {
     console.log("Rendering successful");
 },(e) => {
     console.error("Run into error " + e.message);
