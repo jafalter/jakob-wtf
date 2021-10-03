@@ -29,7 +29,7 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
-            },
+            }
         ],
     },
     plugins: [
@@ -48,8 +48,14 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
-            template: "./src/articles/WestonPrice.html",
-            filename: "./articles/src/WestonPrice.html",
+            template: "./src/articles/weston-price-traditional-diets-en.html",
+            filename: "./articles/src/weston-price-traditional-diets-en.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/weston-price-traditional-diets-de.html",
+            filename: "./articles/src/weston-price-traditional-diets-de.html",
             inject: false,
             hash: true
         }),
@@ -66,6 +72,14 @@ module.exports = {
                         const split = url.split('/');
                         const png = split[split.length-1];
                         return "/" + png;
+                    }
+                },
+                {
+                    from: /^.*.jpg.*$/, to: function (context) {
+                        const url = context.parsedUrl.pathname;
+                        const split = url.split('/');
+                        const jpg = split[split.length-1];
+                        return "/" + jpg;
                     }
                 },
                 {from: /^.*\/de$/, to: '/'},

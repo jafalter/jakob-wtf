@@ -1,7 +1,9 @@
 import Api from "./Api";
 import cnf from "../cnf/cnf";
+import Lang from "./Lang";
 
 let api = null;
+let lang = null;
 
 class Factory {
 
@@ -18,6 +20,16 @@ class Factory {
             api = new Api(cnf.api.host, cnf.api.key);
         }
         return api;
+    }
+
+    /**
+     * @return {Lang}
+     */
+    static getLang() {
+        if( lang === null ) {
+            lang = new Lang();
+        }
+        return lang;
     }
 
 }

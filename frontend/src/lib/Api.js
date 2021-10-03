@@ -1,3 +1,5 @@
+import {fetch} from "whatwg-fetch";
+
 class Api {
 
     constructor(host, apikey) {
@@ -21,6 +23,23 @@ class Api {
             throw new Error("Request to fetch articles failed with status code: " + res.status);
         }
         return res.json()
+    }
+
+    /**
+     * Fetch content of an articles
+     *
+     * @param key {string} article key
+     * @param ln {string} language (en/de)
+     * @return {Promise<string>} article text
+     */
+    async fetchArticleContent(key, ln) {
+        const url = '/articles/src/' + key + "-" + ln + ".html";
+        console.log(url);
+        const res = await fetch('/articles/src/' + key + "-" + ln + ".html");
+        if( res.status !== 200 ) {
+            throw new Error("Request to failed " + ln + " source of article " + key + " failed with status " + res.status);
+        }
+        return res.text();
     }
 }
 
