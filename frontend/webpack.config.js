@@ -48,14 +48,26 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
-            template: "./src/articles/weston-price-traditional-diets-en.html",
-            filename: "./articles/src/weston-price-traditional-diets-en.html",
+            template: "./src/articles/weston-price-traditional-diets-EN.html",
+            filename: "./articles/src/weston-price-traditional-diets-EN.html",
             inject: false,
             hash: true
         }),
         new HtmlWebPackPlugin({
-            template: "./src/articles/weston-price-traditional-diets-de.html",
-            filename: "./articles/src/weston-price-traditional-diets-de.html",
+            template: "./src/articles/weston-price-traditional-diets-DE.html",
+            filename: "./articles/src/weston-price-traditional-diets-DE.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/analogy-between-bitcoin-and-chess-EN.html",
+            filename: "./articles/src/analogy-between-bitcoin-and-chess-EN.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/analogy-between-bitcoin-and-chess-DE.html",
+            filename: "./articles/src/analogy-between-bitcoin-and-chess-DE.html",
             inject: false,
             hash: true
         }),

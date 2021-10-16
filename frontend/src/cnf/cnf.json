@@ -2,5 +2,8 @@
   "api" : {
     "host" : "https://api.jakob.wtf",
     "key" : "ea3617fc98703d77cf64c40889f325b4959a666b0ba7786f0a4fee31656fab89"
+  },
+  "assets" : {
+    "url" : "http://localhost:8080"
   }
 }

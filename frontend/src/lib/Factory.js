@@ -23,6 +23,13 @@ class Factory {
     }
 
     /**
+     * @return {string}
+     */
+    static getAssetsUrl() {
+        return this.getCnf().assets.url + "/";
+    }
+
+    /**
      * @return {Lang}
      */
     static getLang() {

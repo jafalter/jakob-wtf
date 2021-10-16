@@ -34,11 +34,11 @@ const renderArticle = async () => {
     }, (e) => {
         handleError(e);
     })
-}
+};
 
 const handleError = (e) => {
     console.error(e);
-}
+};
 
 // Render function based on current page
 let render = renderIndex;
