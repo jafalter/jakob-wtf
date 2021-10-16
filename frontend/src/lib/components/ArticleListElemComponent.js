@@ -31,12 +31,16 @@ class ArticleListElemComponent extends Component {
 
 
     render() {
-        return `<li class="article-list-elem ${ this.first ? 'first-elem' : ''}">
-    <a href="${this.link}"><img class="article-list-elem-img ${ this.first ? 'first-elem' : ''}" src="${ this.first ? this.limg : this.img}" alt="${this.title}" /></a>
-    <a href="${this.link}"><h1 class="articles-list-elem-title">${this.title}</h1></a>
+        return `<li class="article-list-elem ${this.first ? '' : 'notfirst-elem'}">
+<div class="article-list-elem-thumbnail ${this.first ? '' : 'notfirst-thumbnail'}">
+    <a class="article-list-elem-link" href="${this.link}"><img class="article-list-elem-img rounded ${this.first ? '' : 'notfirst-img'}" src="${this.limg}" alt="${this.title}" /></a>
+</div>
+<div class="article-list-elem-txt ${this.first ? '' : 'notfirst-txt'}">
+    <a href="${this.link}"><h1 class="articles-list-elem-title ${this.first ? '' : 'notfirst-title'}">${this.title}</h1></a>
     <p class="article-list-elem-time">${this.days}d ago</p>
-    <p class="article-list-elem-subtxt">${this.subtxt}</p>
+    <p class="article-list-elem-subtxt ${this.first ? '' : 'notfirst-subtxt'}">${this.subtxt}</p>
     ${ this.first ? '<a href="'+ this.link +'"><button class="article-list-elem-btn">READ</button></a>' : ''}
+</div>
 </li>`;
     }
 }

@@ -11,14 +11,25 @@ html {
 }
 
 body {
-  display: flex;
-  justify-content: center;
   min-height: 100%;
   min-width: 100%;
   width: 100%;
   margin: 0 auto;
   background-color: $color-bg;
   flex-wrap: wrap;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#content {
+  max-width: 1080px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 a {
@@ -81,6 +92,49 @@ a {
   color: $color-highlight;
 }
 
+#articles-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article-list-elem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  margin: 2%;
+}
+
+.article-list-elem-thumbnail {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.article-list-elem-link {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.article-list-elem-txt {
+  width: 40%;
+}
+
+.article-list-elem-title {
+  font-size: $font-hl;
+}
+
+.rounded {
+  border-radius: 5px;
+}
+
+footer {
+  width: 100%;
+}
+
 @media screen and (max-width: $max-width-s) {
   #deskhead {
     display: none;
@@ -96,4 +150,30 @@ a {
     background-color: $color-bg-light;
   }
 
+}
+
+@media screen and (min-width: $max-width-s) {
+  .notfirst-img {
+    width: 100%;
+  }
+
+  .notfirst-title {
+    font-size: $font-hl-sm;
+  }
+
+  .notfirst-thumbnail {
+    width: 100%;
+  }
+
+  .notfirst-txt {
+    width: 100%;
+  }
+
+  .notfirst-elem {
+    width: 24%;
+  }
+
+  .notfirst-subtxt {
+    display: none;
+  }
 }
