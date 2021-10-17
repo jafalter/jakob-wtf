@@ -8,17 +8,16 @@ import 'whatwg-fetch'
 
 import Factory from './lib/Factory';
 import ArticleListComponent from "./lib/components/ArticleListComponent";
+import Lang from "./lib/Lang";
 
 const api = Factory.getApi();
 const lang = Factory.getLang();
 
 const renderIndex = async () => {
-    console.log("Start");
     const articles = await api.fetchArticles();
-    console.log("Found " + articles.length + " articles");
     const articleList = new ArticleListComponent(articles);
     const domContent = document.querySelector('#content');
-    domContent.innerHTML = articleList.render();
+    domContent.innerHTML = articleList.render() + domContent.innerHTML;
 };
 
 const renderArticle = async () => {
@@ -27,10 +26,33 @@ const renderArticle = async () => {
     const secLastElem = split[split.length-2];
     const key = ["EN", "DE"].includes(lastElem.toUpperCase()) ? secLastElem : lastElem;
     const ln = lang.getLanguage();
-    console.log("Rendering article " + key);
     api.fetchArticleContent(key, ln).then((cnt) => {
-        const domContent = document.querySelector('#content');
+        const domContent = document.querySelector('#article-txt');
+        cnt = cnt.replaceAll(':assets:', Factory.getAssetsUrl());
         domContent.innerHTML = cnt;
+    }, (e) => {
+        handleError(e);
+    });
+    api.fetchArticleDetails(key).then((details) => {
+        const date = new Date(details.createdAt);
+        let title = "";
+        for(let t of details.title.regionalText) {
+            console.log(t.language.value);
+            if( t.language.value === lang.getLanguage() ) {
+                title = t.value;
+            }
+        }
+        console.log(details);
+        const domHl = document.querySelector('#article-hl');
+        domHl.innerHTML = title;
+        const domDate = document.querySelector('#article-date');
+        const domImg = document.querySelector('#article-img');
+        domImg.innerHTML = `<img class="article-img" src="${Factory.getAssetsUrl() + details.image}"  alt="Picture of a traditional scotish family"/>`;
+        domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
     }, (e) => {
         handleError(e);
     })

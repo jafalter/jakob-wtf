@@ -8,7 +8,6 @@ class ArticleListElemComponent extends Component {
         super();
         this.first = isFirst;
         this.img = Factory.getAssetsUrl() + e.image;
-        this.limg = Factory.getAssetsUrl() + "large" + e.image;
         const titles = e.title.regionalText;
         const subtxts = e.subtext.regionalText;
         this.key = e.key.regionalText[0].value;
@@ -33,7 +32,7 @@ class ArticleListElemComponent extends Component {
     render() {
         return `<a href="${this.link}"><li class="article-list-elem ${this.first ? '' : 'notfirst-elem'}">
 <div class="article-list-elem-thumbnail ${this.first ? '' : 'notfirst-thumbnail'}">
-    <img class="article-list-elem-img rounded ${this.first ? '' : 'notfirst-img'}" src="${this.limg}" alt="${this.title}" />
+    <img class="article-list-elem-img rounded ${this.first ? '' : 'notfirst-img'}" src="${this.img}" alt="${this.title}" />
 </div>
 <div class="article-list-elem-txt ${this.first ? '' : 'notfirst-txt'}">
     <h1 class="article-list-elem-title ${this.first ? '' : 'notfirst-title'}">${this.title}</h1>

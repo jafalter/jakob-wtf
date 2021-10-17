@@ -22,7 +22,7 @@ class Api {
         if( res.status !== 200 ) {
             throw new Error("Request to fetch articles failed with status code: " + res.status);
         }
-        return res.json()
+        return res.json();
     }
 
     /**
@@ -34,12 +34,20 @@ class Api {
      */
     async fetchArticleContent(key, ln) {
         const url = '/articles/src/' + key + "-" + ln + ".html";
-        console.log(url);
         const res = await fetch('/articles/src/' + key + "-" + ln + ".html");
         if( res.status !== 200 ) {
             throw new Error("Request to failed " + ln + " source of article " + key + " failed with status " + res.status);
         }
         return res.text();
+    }
+
+    async fetchArticleDetails(key) {
+        const url = this.host + "/api/article/" + key;
+        const res = await fetch(url, this.opts);
+        if( res.status !== 200 ) {
+            throw new Error("Request to fetch article details failed with status code: " + res.status);
+        }
+        return res.json();
     }
 }
 

@@ -5,12 +5,17 @@
   <%= require('html-loader!./templates/meta.html').default %>
 </head>
 <body>
-<div id="main"></div>
 <%= require('html-loader!./templates/sidepanel.html').default %>
 <%= require('html-loader!./templates/header.html').default %>
-<div id="content">
-
+<div id="main">
+  <div id="article-content">
+    <h1 id="article-hl"></h1>
+    <p id="article-date"></p>
+    <p id="article-img"></p>
+    <div id="article-txt">
+    </div>
+    <%= require('html-loader!./templates/footer.html').default %>
+  </div>
 </div>
-<%= require('html-loader!./templates/footer.html').default %>
 </body>
 </html>

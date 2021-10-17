@@ -26,10 +26,26 @@ body {
 }
 
 #content {
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-left: 1px solid rgba(255,255,255,0.2);
   max-width: 1080px;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: center;
+}
+
+.txt-block {
+  text-align: justify;
+  width: 100%;
+}
+
+#article-content {
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-left: 1px solid rgba(255,255,255,0.2);
+  max-width: 1080px;
+  width: 100%;
+  padding: 5%;
 }
 
 a {
@@ -95,6 +111,7 @@ a {
 #articles-list {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .article-list-elem {
@@ -133,6 +150,29 @@ a {
 
 footer {
   width: 100%;
+}
+
+.sources {
+  word-break: break-all;
+  counter-reset: list;
+  padding: 0;
+}
+
+.sources > li {
+  list-style: none;
+}
+
+.sources > li:before {
+  content: "[" counter(list) "] ";
+  counter-increment: list;
+}
+
+.img-subtxt {
+  text-align: center;
+}
+
+.article-img {
+  max-width: 100%;
 }
 
 @media screen and (max-width: $max-width-s) {
@@ -186,6 +226,10 @@ footer {
 
   .article-list-elem-subtxt {
     margin-bottom: 0;
+  }
+
+  #article-content {
+    border: none;
   }
 }
 

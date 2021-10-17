@@ -33,7 +33,12 @@ class ApiController {
         if ( txt === null ) {
             throw new Error("Nothing found with key " + key);
         }
-        const article = await Articles.findOne({where : { keyId : txt.id }});
+        const article = await Articles.findOne({
+            where : {keyId : txt.id},
+            include: [
+                { all: true, nested: true }
+            ]
+        });
         if ( article === null ) {
             throw new Error("Nothing found with key " + key);
         }
