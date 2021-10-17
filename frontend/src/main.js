@@ -62,6 +62,20 @@ const handleError = (e) => {
     console.error(e);
 };
 
+const domSidePanelBtn = document.querySelector('#sidepanel-bars-uncollapse');
+const sidePanel = document.querySelector('#mobile-sidepanel');
+
+domSidePanelBtn.addEventListener('click', () => {
+    if( sidePanel.classList.contains('collapsed') ) {
+        sidePanel.classList.remove('collapsed');
+        domSidePanelBtn.classList.add('rotated');
+    }
+    else {
+        sidePanel.classList.add('collapsed');
+        domSidePanelBtn.classList.remove('rotated')
+    }
+});
+
 // Render function based on current page
 let render = renderIndex;
 
