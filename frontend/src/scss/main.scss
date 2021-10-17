@@ -150,6 +150,43 @@ footer {
     background-color: $color-bg-light;
   }
 
+  .article-list-elem-thumbnail {
+    width: 100%;
+  }
+
+  .article-list-elem {
+    background-color: $color-bg-light;
+    max-width: 550px;
+  }
+
+  .article-list-elem-txt {
+    width: 100%;
+    padding: 5%;
+  }
+
+  .article-list-elem-title {
+    margin: 0;
+    font-size: $font-hl-sm;
+  }
+
+  .article-list-elem-img {
+    width: 100%;
+  }
+
+  #articles-list {
+    margin: 0;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .article-list-elem-btn {
+    display: none;
+  }
+
+  .article-list-elem-subtxt {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (min-width: $max-width-s) {
