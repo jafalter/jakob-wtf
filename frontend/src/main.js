@@ -17,7 +17,7 @@ const renderIndex = async () => {
     const articles = await api.fetchArticles();
     const articleList = new ArticleListComponent(articles);
     const domContent = document.querySelector('#content');
-    domContent.innerHTML = articleList.render() + domContent.innerHTML;
+    domContent.innerHTML =  domContent.innerHTML + articleList.render();
 };
 
 const renderArticle = async () => {
@@ -58,23 +58,18 @@ const renderArticle = async () => {
     })
 };
 
+const renderResources = async () => {
+
+};
+
+const renderAbout = async () => {
+
+};
+
 const handleError = (e) => {
     console.error(e);
 };
 
-const domSidePanelBtn = document.querySelector('#sidepanel-bars-uncollapse');
-const sidePanel = document.querySelector('#mobile-sidepanel');
-
-domSidePanelBtn.addEventListener('click', () => {
-    if( sidePanel.classList.contains('collapsed') ) {
-        sidePanel.classList.remove('collapsed');
-        domSidePanelBtn.classList.add('rotated');
-    }
-    else {
-        sidePanel.classList.add('collapsed');
-        domSidePanelBtn.classList.remove('rotated')
-    }
-});
 
 // Render function based on current page
 let render = renderIndex;
@@ -82,8 +77,27 @@ let render = renderIndex;
 if( window.location.href.includes('article') ) {
     render = renderArticle;
 }
+else if( window.location.href.includes('resources') ) {
+    render = renderResources();
+}
+else if( window.location.href.includes('about') ) {
+    render = renderAbout();
+}
 render().then(() => {
     console.log("Rendering successful");
+    const domSidePanelBtn = document.querySelector('#sidepanel-bars-uncollapse');
+    const sidePanel = document.querySelector('#mobile-sidepanel');
+
+    domSidePanelBtn.addEventListener('click', () => {
+        if( sidePanel.classList.contains('collapsed') ) {
+            sidePanel.classList.remove('collapsed');
+            domSidePanelBtn.classList.add('rotated');
+        }
+        else {
+            sidePanel.classList.add('collapsed');
+            domSidePanelBtn.classList.remove('rotated')
+        }
+    });
 },(e) => {
     console.error("Run into error " + e.message);
 });

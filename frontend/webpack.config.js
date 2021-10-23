@@ -48,6 +48,16 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
+            template: "./src/resources.html",
+            filename: "./resources.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/about.html",
+            filename: "./about.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
             template: "./src/articles/weston-price-traditional-diets-EN.html",
             filename: "./articles/src/weston-price-traditional-diets-EN.html",
             inject: false,
