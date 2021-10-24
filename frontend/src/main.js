@@ -78,10 +78,10 @@ if( window.location.href.includes('article') ) {
     render = renderArticle;
 }
 else if( window.location.href.includes('resources') ) {
-    render = renderResources();
+    render = renderResources;
 }
 else if( window.location.href.includes('about') ) {
-    render = renderAbout();
+    render = renderAbout;
 }
 render().then(() => {
     console.log("Rendering successful");

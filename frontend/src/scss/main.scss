@@ -45,12 +45,9 @@ body {
 }
 
 #article-content {
-  flex: 1 1 auto;
-  border-right: 1px solid rgba(255,255,255,0.2);
-  border-left: 1px solid rgba(255,255,255,0.2);
-  max-width: 1080px;
   padding-left: 5%;
   padding-right: 5%;
+  max-width: 60%;
 }
 
 a {
@@ -118,7 +115,7 @@ a {
 #articles-list {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  max-width: 60%;
 }
 
 .article-list-elem {
@@ -304,6 +301,10 @@ footer {
 @media screen and (min-width: $max-width-s) {
   .notfirst-img {
     width: 100%;
+  }
+
+  #mobile-sidepanel {
+    display: none;
   }
 
   .notfirst-title {
