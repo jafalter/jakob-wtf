@@ -47,7 +47,6 @@ body {
 #article-content {
   padding-left: 5%;
   padding-right: 5%;
-  max-width: 60%;
 }
 
 a {
@@ -115,7 +114,29 @@ a {
 #articles-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 60%;
+}
+
+.res-hl {
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid $font-color-light;
+  line-height: 0.1em;
+  
+}
+
+#resources {
+  padding-top: 2%;
+}
+
+.res-link {
+  margin-top: 2%;
+  display: inline-block;
+  color: $color-highlight;
+}
+
+.res-hl span {
+  padding:0 10px;
+  background-color: $color-bg;
 }
 
 .article-list-elem {
@@ -160,6 +181,10 @@ footer {
   word-break: break-all;
   counter-reset: list;
   padding: 0;
+}
+
+.shrink {
+  max-width: 60%;
 }
 
 
@@ -246,7 +271,7 @@ footer {
   }
 
   #article-content {
-    border: none;
+    border: none;;
   }
 
   #mobile-sidepanel {

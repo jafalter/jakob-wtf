@@ -9,6 +9,7 @@ import 'whatwg-fetch'
 import Factory from './lib/Factory';
 import ArticleListComponent from "./lib/components/ArticleListComponent";
 import Lang from "./lib/Lang";
+import ResourceListComponent from "./lib/components/ResourceListComponent";
 
 const api = Factory.getApi();
 const lang = Factory.getLang();
@@ -59,7 +60,9 @@ const renderArticle = async () => {
 };
 
 const renderResources = async () => {
-
+    const resources = await api.fetchResources();
+    const domContent = document.querySelector('#resources');
+    domContent.innerHTML = new ResourceListComponent(resources).render();
 };
 
 const renderAbout = async () => {
@@ -86,16 +89,31 @@ else if( window.location.href.includes('about') ) {
 render().then(() => {
     console.log("Rendering successful");
     const domSidePanelBtn = document.querySelector('#sidepanel-bars-uncollapse');
-    const sidePanel = document.querySelector('#mobile-sidepanel');
+    const domSidePanel = document.querySelector('#mobile-sidepanel');
+    const domArticleCnt = document.querySelector('#article-content');
+    const domArticlesLst = document.querySelector('#articles-list');
 
     domSidePanelBtn.addEventListener('click', () => {
-        if( sidePanel.classList.contains('collapsed') ) {
-            sidePanel.classList.remove('collapsed');
+        if( domSidePanel.classList.contains('collapsed') ) {
+            domSidePanel.classList.remove('collapsed');
             domSidePanelBtn.classList.add('rotated');
+            if( domArticleCnt ) {
+                domArticleCnt.classList.add('shrink');
+            }
+            if( domArticlesLst ) {
+                domArticlesLst.classList.add('shrink');
+            }
+
         }
         else {
-            sidePanel.classList.add('collapsed');
-            domSidePanelBtn.classList.remove('rotated')
+            domSidePanel.classList.add('collapsed');
+            domSidePanelBtn.classList.remove('rotated');
+            if( domArticleCnt ) {
+                domArticleCnt.classList.remove('shrink');
+            }
+            if( domArticlesLst ) {
+                domArticlesLst.classList.remove('shrink');
+            }
         }
     });
 },(e) => {

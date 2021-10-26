@@ -15,6 +15,10 @@ class ArticleListElemComponent extends Component {
         const created = new Date(e.createdAt);
         const today = new Date();
         this.days = Util.getDaysBetween(today, created);
+        if( this.days > 365 ) {
+            this.years = Math.floor(this.days / 365);
+            this.days = this.days - (this.years * 365);
+        }
 
         for(let t of titles) {
             if( t.language.value === len ) {
@@ -36,7 +40,7 @@ class ArticleListElemComponent extends Component {
 </div>
 <div class="article-list-elem-txt ${this.first ? '' : 'notfirst-txt'}">
     <h1 class="article-list-elem-title ${this.first ? '' : 'notfirst-title'}">${this.title}</h1>
-    <p class="article-list-elem-time">${this.days}d ago</p>
+    <p class="article-list-elem-time">${this.years ? this.years + "y " + this.days : this.days}d ago</p>
     <p class="article-list-elem-subtxt ${this.first ? '' : 'notfirst-subtxt'}">${this.subtxt}</p>
     ${ this.first ? '<button class="article-list-elem-btn">READ</button>' : ''}
 </div>

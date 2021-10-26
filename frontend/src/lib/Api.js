@@ -26,6 +26,19 @@ class Api {
     }
 
     /**
+     *
+     * @return {Promise<any>}
+     */
+    async fetchResources() {
+        const uri = this.host + "/api/resources";
+        const res = await fetch(uri, this.opts);
+        if( res.status !== 200 ) {
+            throw new Error("Request to fetch resources failed with status code: " + res.status);
+        }
+        return res.json();
+    }
+
+    /**
      * Fetch content of an articles
      *
      * @param key {string} article key
