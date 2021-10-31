@@ -2,21 +2,16 @@ import Component from "./Component";
 
 class ResourceListElemComponent extends Component {
 
-    constructor(elem, len) {
+    constructor(elem) {
         super();
-        console.log(elem);
-        let txt = "";
-        for( let t of elem.title.regionalText ) {
-            if ( t.language.value === len ) {
-                txt = t.value;
-            }
-        }
-        this.txt = txt;
+        this.txt = elem.title;
         this.link = elem.url;
+        this.audio = elem.audio;
+
     }
 
     render() {
-        return `<a class="res-link" href='${this.link}'>${this.txt}</a>`;
+        return `<a class="res-link" href='${this.link}'>${this.txt}</a>${this.audio !== null ? '<a class="audio-link" href="' + this.audio +'">Audio</a>' : ''}`;
     }
 }
 

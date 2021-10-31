@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `Resources`
     `id`          INTEGER auto_increment,
     `url`         TEXT,
     `audio`       TEXT,
-    `title`       TEXT.
+    `title`       TEXT,
     `createdAt`   DATETIME NOT NULL,
     `updatedAt`   DATETIME NOT NULL,
     `categoryId`  INTEGER,

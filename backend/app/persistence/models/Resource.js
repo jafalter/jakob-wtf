@@ -16,7 +16,8 @@ const Resource = seq.define('Resource', {
         type: DataTypes.TEXT
     },
     audio: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: true
     },
     title: {
         type: DataTypes.TEXT

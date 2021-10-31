@@ -5,11 +5,10 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import 'whatwg-fetch'
 
-
 import Factory from './lib/Factory';
 import ArticleListComponent from "./lib/components/ArticleListComponent";
-import Lang from "./lib/Lang";
 import ResourceListComponent from "./lib/components/ResourceListComponent";
+import ReadingState from "./lib/ReadingState";
 
 const api = Factory.getApi();
 const lang = Factory.getLang();
@@ -18,8 +17,13 @@ const RESOURCES_EN = "RESOURCES";
 const RESOURCES_DE = "RESOURCEN";
 const ABOUT_EN = "ABOUT";
 const ABOUT_DE = "ÜBER MICH";
-const TIP_EN = "SEND SATS";
-const TIP_DE = "SPENDE SATS";
+const TIP_EN = "TIP";
+const TIP_DE = "SPENDE";
+
+const TIME_LEFT_DE = "verbleibend";
+const TIME_LEFT_EN = "left";
+const POS_SAVE_EN = "- position saved...";
+const POS_SAVE_DE = "- Position gespeichert...";
 
 const renderIndex = async () => {
     const articles = await api.fetchArticles();
@@ -30,6 +34,10 @@ const renderIndex = async () => {
 
 const renderArticle = async () => {
     const split = window.location.href.split('/');
+    const domPercentage = document.querySelector('#percentage');
+    const domTimeLeft = document.querySelector('#time-left');
+    const domReadingInfo = document.querySelector('#reading-info');
+    const domReadingLeft = document.querySelector('#reading-left');
     const lastElem = split[split.length-1];
     const secLastElem = split[split.length-2];
     const key = ["EN", "DE"].includes(lastElem.toUpperCase()) ? secLastElem : lastElem;
@@ -38,6 +46,24 @@ const renderArticle = async () => {
         const domContent = document.querySelector('#article-txt');
         cnt = cnt.replaceAll(':assets:', Factory.getAssetsUrl());
         domContent.innerHTML = cnt;
+        const max = domContent.offsetHeight;
+        const readingState = new ReadingState(key, max, cnt.split(' ').length, (pos) => {
+            window.scrollTo(0, pos);
+        });
+        domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
+        window.addEventListener('scroll', () => {
+            const position = window.scrollY;
+            readingState.updatePosition(position);
+            domPercentage.innerText = readingState.getPercentage();
+            domTimeLeft.innerText = readingState.getRemainingTime();
+        });
+        window.setInterval(() => {
+            readingState.savePosition();
+            domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
+            setTimeout(() => {
+                domReadingInfo.textContent = "";
+            }, 5000);
+        }, 10000);
     }, (e) => {
         handleError(e);
     });
@@ -50,7 +76,6 @@ const renderArticle = async () => {
                 title = t.value;
             }
         }
-        console.log(details);
         const domHl = document.querySelector('#article-hl');
         domHl.innerHTML = title;
         const domDate = document.querySelector('#article-date');

@@ -23,6 +23,7 @@ body {
   justify-content: center;
   flex-flow: column;
   align-items: center;
+  min-height: 100%;
 }
 
 .collapsed {
@@ -40,7 +41,6 @@ body {
 }
 
 .txt-block {
-  text-align: justify;
   width: 100%;
 }
 
@@ -128,10 +128,19 @@ a {
   padding-top: 2%;
 }
 
+
 .res-link {
   margin-top: 2%;
+  margin-left: 2%;
+  width: 90%;
   display: inline-block;
   color: $color-highlight;
+}
+
+.audio-link {
+  color: $color-highlight;
+  text-decoration: underline;
+  display: inline-block;
 }
 
 .res-hl span {
@@ -173,8 +182,46 @@ a {
   border-radius: 5px;
 }
 
+#progress {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  background-color: rgba(0,0,0,0.7);
+  text-align: center;
+}
+
 footer {
-  flex: 0 1 40px;
+  flex: 0 1 25px;
+  width: 100%;
+  max-width: 1080px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-left: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  font-size: $font-size-xs;
+}
+
+#footer-link {
+  text-decoration: underline;
+}
+
+.article-list-elem-btn {
+  background: none;
+  border-radius: 2px;
+  width: 100px;
+  padding: 6px 9px 5px;
+  border: 1px solid $color-highlight;
+  color: $color-highlight
+}
+
+.article-list-elem-btn:hover {
+  background-color: $color-highlight;
+  color: $font-color-light;
+  cursor: pointer;
 }
 
 .sources {
