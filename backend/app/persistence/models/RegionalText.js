@@ -14,7 +14,7 @@ const RegionalText = seq.define('RegionalText', {
         autoIncrement: true
     },
     value: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     }
 });

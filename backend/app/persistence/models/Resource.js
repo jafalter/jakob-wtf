@@ -15,12 +15,14 @@ const Resource = seq.define('Resource', {
     url: {
         type: DataTypes.TEXT
     },
-    description: {
+    audio: {
+        type: DataTypes.TEXT
+    },
+    title: {
         type: DataTypes.TEXT
     }
 });
 
 Resource.belongsTo(Category, {as: 'category'});
-Resource.belongsTo(Text, {as: 'title'});
 
 module.exports = Resource;
