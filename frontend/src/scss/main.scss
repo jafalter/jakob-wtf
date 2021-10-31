@@ -213,6 +213,14 @@ footer {
   max-width: 100%;
 }
 
+.len-select:hover {
+  cursor: pointer;
+}
+
+.selected-len {
+  color: $color-highlight;
+}
+
 @media screen and (max-width: $max-width-s) {
   #deskhead {
     display: none;

@@ -14,11 +14,18 @@ import ResourceListComponent from "./lib/components/ResourceListComponent";
 const api = Factory.getApi();
 const lang = Factory.getLang();
 
+const RESOURCES_EN = "RESOURCES";
+const RESOURCES_DE = "RESOURCEN";
+const ABOUT_EN = "ABOUT";
+const ABOUT_DE = "ÜBER MICH";
+const TIP_EN = "SEND SATS";
+const TIP_DE = "SPENDE SATS";
+
 const renderIndex = async () => {
     const articles = await api.fetchArticles();
     const articleList = new ArticleListComponent(articles);
-    const domContent = document.querySelector('#content');
-    domContent.innerHTML =  domContent.innerHTML + articleList.render();
+    const domContent = document.querySelector('#articles-list');
+    domContent.outerHTML = articleList.render();
 };
 
 const renderArticle = async () => {
@@ -65,8 +72,72 @@ const renderResources = async () => {
     domContent.innerHTML = new ResourceListComponent(resources).render();
 };
 
-const renderAbout = async () => {
+const renderDesktopHeader = () => {
+    const domDhresources = document.querySelector('#dh-resources');
+    const domDhabout = document.querySelector('#dh-about');
+    const domDhDE = document.querySelector('#dh-de');
+    const domDhEN = document.querySelector('#dh-en');
 
+    const len = lang.getLanguage();
+    if( len === 'DE' ) {
+        domDhresources.textContent = RESOURCES_DE;
+        domDhabout.textContent = ABOUT_DE;
+        domDhEN.classList.remove('selected-len');
+        domDhDE.classList.add('selected-len');
+    }
+    else {
+        domDhresources.textContent = RESOURCES_EN;
+        domDhabout.textContent = ABOUT_EN;
+        domDhEN.classList.add('selected-len');
+        domDhDE.classList.remove('selected-len');
+    }
+};
+
+const renderSidePanel = () => {
+    const domMbResources = document.querySelector('#mb-resources');
+    const domMbAbout = document.querySelector('#mb-about');
+    const domMbTip = document.querySelector('#mb-tip');
+    const domMbDE = document.querySelector('#mb-de');
+    const domMbEN = document.querySelector('#mb-en');
+
+    const len = lang.getLanguage();
+    if( len === 'DE' ) {
+        domMbResources.textContent = RESOURCES_DE;
+        domMbAbout.textContent = ABOUT_DE;
+        domMbTip.textContent = TIP_DE;
+        domMbEN.classList.remove('selected-len');
+        domMbDE.classList.add('selected-len');
+    }
+    else {
+        domMbResources.textContent = RESOURCES_EN;
+        domMbAbout.textContent = ABOUT_EN;
+        domMbTip.textContent = TIP_EN;
+        domMbEN.classList.add('selected-len');
+        domMbDE.classList.remove('selected-len');
+    }
+};
+
+const setupLangChangeListener = (cb) => {
+    const domDhEN = document.querySelector('#dh-en');
+    const domDhDE = document.querySelector('#dh-de');
+    const domMbEN = document.querySelector('#mb-en');
+    const domMbDE = document.querySelector('#mb-de');
+    domDhEN.addEventListener('click', () => {
+        lang.setLanguage('EN');
+        cb();
+    });
+    domDhDE.addEventListener('click', () => {
+        lang.setLanguage('DE');
+        cb();
+    });
+    domMbEN.addEventListener('click', () => {
+        lang.setLanguage('EN');
+        cb();
+    });
+    domMbDE.addEventListener('click', () => {
+        lang.setLanguage('DE');
+        cb();
+    });
 };
 
 const handleError = (e) => {
@@ -86,7 +157,14 @@ else if( window.location.href.includes('resources') ) {
 else if( window.location.href.includes('about') ) {
     render = renderAbout;
 }
-render().then(() => {
+
+const renderPipeLine = async () => {
+    renderDesktopHeader();
+    renderSidePanel();
+    await render();
+};
+
+const postRenderActions = () => {
     console.log("Rendering successful");
     const domSidePanelBtn = document.querySelector('#sidepanel-bars-uncollapse');
     const domSidePanel = document.querySelector('#mobile-sidepanel');
@@ -116,6 +194,18 @@ render().then(() => {
             }
         }
     });
+};
+
+setupLangChangeListener(() => {
+    renderPipeLine().then(() => {
+        postRenderActions();
+    }, (e) => {
+        handleError(e);
+    })
+});
+
+renderPipeLine().then(() => {
+    postRenderActions();
 },(e) => {
-    console.error("Run into error " + e.message);
+    handleError(e);
 });
