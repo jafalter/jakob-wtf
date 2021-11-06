@@ -28,6 +28,16 @@ class ReadingState {
     }
 
     /**
+     * Returns true if the reader has reached the end of the screen
+     * @return {boolean}
+     */
+    isAtEnd(height) {
+        console.log(height);
+        console.log((this._end - this._position));
+        return (this._end - this._position) <= 250;
+    }
+
+    /**
      * Update reading position
      * @param {number} p
      */

@@ -39,6 +39,7 @@ const renderArticle = async () => {
     const domTimeLeft = document.querySelector('#time-left');
     const domReadingInfo = document.querySelector('#reading-info');
     const domReadingLeft = document.querySelector('#reading-left');
+    const domProgress = document.querySelector('#progress');
     const key = split[split.length-1];
     const ln = lang.getLanguage();
     api.fetchArticleContent(key, ln).then((cnt) => {
@@ -50,11 +51,17 @@ const renderArticle = async () => {
             window.scrollTo(0, pos);
         });
         domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
-        window.addEventListener('scroll', () => {
-            const position = window.scrollY;
+        window.addEventListener('scroll', (e) => {
+            const position = window.pageYOffset;
             readingState.updatePosition(position);
             domPercentage.innerText = readingState.getPercentage();
             domTimeLeft.innerText = readingState.getRemainingTime();
+            if( readingState.isAtEnd() && !domProgress.classList.contains('collapsed') ) {
+                domProgress.classList.add('collapsed');
+            }
+            else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
+                domProgress.classList.remove('collapsed');
+            }
         });
         window.setInterval(() => {
             readingState.savePosition();
