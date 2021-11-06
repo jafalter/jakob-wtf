@@ -2,16 +2,26 @@ const key = 'LEN';
 const defaultLen = 'EN';
 
 class Lang {
+    _language
 
-    /**
-     * @param len
-     */
-    setLanguage(len) {
-        if( len && ['EN', 'DE'].includes(len.toUpperCase()) ) {
-            localStorage.setItem(key, len.toUpperCase());
+    constructor() {
+        const isDev = window.location.hostname === 'localhost';
+        if( isDev ) {
+            if( localStorage.getItem('lang') ) {
+                this._language = localStorage.getItem('lang');
+            }
+            else {
+                this._language = defaultLen;
+            }
         }
         else {
-            console.error("Invalid language " + len);
+            const isDe = window.location.hostname.toUpperCase().startsWith('DE');
+            if( isDe ) {
+                this._language = 'DE';
+            }
+            else {
+                this._language = 'EN';
+            }
         }
     }
 
@@ -23,28 +33,7 @@ class Lang {
      * @return {string}
      */
     getLanguage() {
-        const val = localStorage.getItem(key);
-        if( val !== null ) return val;
-        const detect = this._browserDetect();
-        if( detect !== null ) return  detect;
-        return defaultLen;
-    }
-
-    /**
-     *
-     * @return {null||string}
-     * @private
-     */
-    _browserDetect() {
-        let len = null;
-        let language = window.navigator.userLanguage || window.navigator.language;
-        if( language ) {
-            const code = language.substr(0,2).toUpperCase();
-            if( code === 'EN' || code === 'DE' ) {
-                len = code;
-            }
-        }
-        return len;
+        return this._language
     }
 }
 

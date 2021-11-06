@@ -9,6 +9,7 @@ import Factory from './lib/Factory';
 import ArticleListComponent from "./lib/components/ArticleListComponent";
 import ResourceListComponent from "./lib/components/ResourceListComponent";
 import ReadingState from "./lib/ReadingState";
+import Lang from "./lib/Lang";
 
 const api = Factory.getApi();
 const lang = Factory.getLang();
@@ -16,7 +17,7 @@ const lang = Factory.getLang();
 const RESOURCES_EN = "RESOURCES";
 const RESOURCES_DE = "RESOURCEN";
 const ABOUT_EN = "ABOUT";
-const ABOUT_DE = "ÜBER MICH";
+const ABOUT_DE = "ÜBERMICH";
 const TIP_EN = "TIP";
 const TIP_DE = "SPENDE";
 
@@ -38,9 +39,7 @@ const renderArticle = async () => {
     const domTimeLeft = document.querySelector('#time-left');
     const domReadingInfo = document.querySelector('#reading-info');
     const domReadingLeft = document.querySelector('#reading-left');
-    const lastElem = split[split.length-1];
-    const secLastElem = split[split.length-2];
-    const key = ["EN", "DE"].includes(lastElem.toUpperCase()) ? secLastElem : lastElem;
+    const key = split[split.length-1];
     const ln = lang.getLanguage();
     api.fetchArticleContent(key, ln).then((cnt) => {
         const domContent = document.querySelector('#article-txt');
@@ -142,27 +141,36 @@ const renderSidePanel = () => {
     }
 };
 
-const setupLangChangeListener = (cb) => {
+const switchToEnglish = (isDev) => {
+    if( isDev )  {
+        localStorage.setItem('lang', 'EN');
+        window.location.reload();
+    }
+    else {
+        window.location.href = window.location.href.replace('de', 'en');
+    }
+}
+
+const switchToGerman = (isDev) => {
+    if( isDev )  {
+        localStorage.setItem('lang', 'DE');
+        window.location.reload();
+    }
+    else {
+        window.location.href = window.location.href.replace('en', 'de');
+    }
+}
+
+const setupLangChangeListener = () => {
+    const isDev = window.location.hostname === 'localhost';
     const domDhEN = document.querySelector('#dh-en');
     const domDhDE = document.querySelector('#dh-de');
     const domMbEN = document.querySelector('#mb-en');
     const domMbDE = document.querySelector('#mb-de');
-    domDhEN.addEventListener('click', () => {
-        lang.setLanguage('EN');
-        cb();
-    });
-    domDhDE.addEventListener('click', () => {
-        lang.setLanguage('DE');
-        cb();
-    });
-    domMbEN.addEventListener('click', () => {
-        lang.setLanguage('EN');
-        cb();
-    });
-    domMbDE.addEventListener('click', () => {
-        lang.setLanguage('DE');
-        cb();
-    });
+    domDhEN.addEventListener('click', () => switchToEnglish(isDev));
+    domDhDE.addEventListener('click', () => switchToGerman(isDev));
+    domMbEN.addEventListener('click', () => switchToEnglish(isDev));
+    domMbDE.addEventListener('click', () => switchToGerman(isDev));
 };
 
 const handleError = (e) => {
@@ -184,6 +192,7 @@ else if( window.location.href.includes('about') ) {
 }
 
 const renderPipeLine = async () => {
+    setupLangChangeListener();
     renderDesktopHeader();
     renderSidePanel();
     await render();
@@ -220,14 +229,6 @@ const postRenderActions = () => {
         }
     });
 };
-
-setupLangChangeListener(() => {
-    renderPipeLine().then(() => {
-        postRenderActions();
-    }, (e) => {
-        handleError(e);
-    })
-});
 
 renderPipeLine().then(() => {
     postRenderActions();
