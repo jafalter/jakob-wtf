@@ -48,7 +48,7 @@ const renderArticle = async () => {
         domContent.innerHTML = cnt;
         const max = domContent.offsetHeight;
         const readingState = new ReadingState(key, max, cnt.split(' ').length, (pos) => {
-            window.scrollTo(0, pos);
+            window.scrollTo(0, pos - 400);
         });
         domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
         window.addEventListener('scroll', (e) => {
@@ -79,7 +79,7 @@ const renderArticle = async () => {
         let title = "";
         for(let t of details.title.regionalText) {
             if( t.language.value === lang.getLanguage() ) {
-                title = "JAKOB.WTF - " + t.value;
+                title = t.value;
             }
         }
         for(let t of details.subtext.regionalText) {
@@ -91,8 +91,8 @@ const renderArticle = async () => {
         domHl.innerHTML = title;
         const domDate = document.querySelector('#article-date');
         const domImg = document.querySelector('#article-img');
-        document.querySelector('meta[name="title"]').setAttribute("content", title);
-        document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+        document.querySelector('meta[name="title"]').setAttribute("content", "JAKOB.WTF - " + title);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", "JAKOB.WTF - " +  title);
         document.querySelector('meta[name="description"]').setAttribute("content", description);
         document.querySelector('meta[property="og:description"]').setAttribute("content", description);
         domImg.innerHTML = `<img class="article-img" src="${Factory.getAssetsUrl() + details.image}"  alt="Picture of a traditional scotish family"/>`;
