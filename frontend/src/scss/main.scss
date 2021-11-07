@@ -21,8 +21,8 @@ body {
 #main {
   display: flex;
   justify-content: center;
-  flex-flow: column;
   align-items: center;
+  flex-flow: column;
   min-height: 100%;
 }
 
@@ -129,16 +129,20 @@ a {
 }
 
 #resources {
-  padding-top: 2%;
+  padding: 4%;
 }
 
 
-.res-link {
+.res-link-wrap {
   margin-top: 2%;
   margin-left: 2%;
-  width: 90%;
-  display: inline-block;
+  width: 100%;
+}
+
+.res-link {
   color: $color-highlight;
+  display: inline-block;
+  width: 90%;
 }
 
 .audio-link {
@@ -200,7 +204,8 @@ a {
 }
 
 footer {
-  flex: 0 1 25px;
+  //flex: 0 1 25px;
+  height: 25px;
   width: 100%;
   max-width: 1080px;
   border-right: 1px solid rgba(255,255,255,0.2);
@@ -381,7 +386,12 @@ footer {
   }
 
   #main {
-    flex-flow: wrap;
+    align-content: normal;
+    align-items: normal;
+  }
+
+  .res-hl {
+    font-size: $font-hl-sm;
   }
 }
 

@@ -11,7 +11,7 @@ class ResourceListElemComponent extends Component {
     }
 
     render() {
-        return `<a class="res-link" href='${this.link}'>${this.txt}</a>${this.audio !== null ? '<a class="audio-link" href="' + this.audio +'">Audio</a>' : ''}`;
+        return `<p class="res-link-wrap"><a class="res-link" href='${this.link}'>${this.txt}</a>${this.audio !== null ? '<a class="audio-link" href="' + this.audio +'">Audio</a>' : ''}</p>`;
     }
 }
 
