@@ -53,9 +53,26 @@ body {
   padding-right: 5%;
 }
 
+#article-date, .img-subtxt{
+  color: $font-color-a;
+  font-size: $font-size-s;
+}
+
+.article-quote {
+  display: block;
+  margin: 40px;
+  font-size: $font-hl-sm;
+  font-style: italic;
+}
+
+.img-subtxt {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 a {
   text-decoration: none;
-  color: $font-color-light;
+  color: $font-color-b;
 }
 
 #deskhead {
@@ -239,6 +256,7 @@ footer {
 .sources {
   word-break: break-all;
   counter-reset: list;
+  font-size: $font-size-s;
   padding: 0;
 }
 

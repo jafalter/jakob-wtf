@@ -32,8 +32,6 @@ class ReadingState {
      * @return {boolean}
      */
     isAtEnd(height) {
-        console.log(height);
-        console.log((this._end - this._position));
         return (this._end - this._position) <= 250;
     }
 

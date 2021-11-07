@@ -75,17 +75,26 @@ const renderArticle = async () => {
     });
     api.fetchArticleDetails(key).then((details) => {
         const date = new Date(details.createdAt);
+        let description = "";
         let title = "";
         for(let t of details.title.regionalText) {
-            console.log(t.language.value);
             if( t.language.value === lang.getLanguage() ) {
-                title = t.value;
+                title = "JAKOB.WTF - " + t.value;
+            }
+        }
+        for(let t of details.subtext.regionalText) {
+            if( t.language.value === lang.getLanguage() ) {
+                description = t.value;
             }
         }
         const domHl = document.querySelector('#article-hl');
         domHl.innerHTML = title;
         const domDate = document.querySelector('#article-date');
         const domImg = document.querySelector('#article-img');
+        document.querySelector('meta[name="title"]').setAttribute("content", title);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+        document.querySelector('meta[name="description"]').setAttribute("content", description);
+        document.querySelector('meta[property="og:description"]').setAttribute("content", description);
         domImg.innerHTML = `<img class="article-img" src="${Factory.getAssetsUrl() + details.image}"  alt="Picture of a traditional scotish family"/>`;
         domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
             year: 'numeric',
