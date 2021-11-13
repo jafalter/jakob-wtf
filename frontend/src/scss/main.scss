@@ -18,6 +18,13 @@ body {
   flex-wrap: wrap;
 }
 
+::-moz-selection {
+  background-color: $color-bg-dark;
+}
+::selection  {
+  background-color: $color-bg-dark;
+}
+
 #main {
   display: flex;
   justify-content: center;
@@ -191,6 +198,7 @@ a {
   align-content: center;
 }
 
+
 .article-list-elem-link {
   display: flex;
   justify-content: flex-start;
@@ -254,6 +262,12 @@ footer {
   color: $font-color-light;
   cursor: pointer;
 }
+
+#article-content a {
+  color: $color-highlight;
+  cursor: pointer;
+}
+
 
 .sources {
   word-break: break-all;
@@ -358,7 +372,7 @@ footer {
   }
 
   #article-content {
-    border: none;;
+    border: none;
   }
 
   #mobile-sidepanel {
