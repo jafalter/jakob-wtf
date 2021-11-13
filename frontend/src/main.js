@@ -49,7 +49,7 @@ const renderArticle = async () => {
         domContent.innerHTML = cnt;
         const max = domContent.offsetHeight;
         const readingState = new ReadingState(key, max, cnt.split(' ').length, (pos) => {
-            window.scrollTo(0, pos - clientHeight);
+            window.scrollTo({ top : pos });
         });
         domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
         window.addEventListener('scroll', (e) => {
