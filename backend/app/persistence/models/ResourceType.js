@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 
 const seq = Factory.getORM();
 
-const ResourceType = seq.define('Resource', {
+const ResourceType = seq.define('ResourceType', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
