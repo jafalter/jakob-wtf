@@ -1,3 +1,6 @@
+const Factory = require('../../lib/Factory');
+const { DataTypes } = require('sequelize');
+
 const seq = Factory.getORM();
 
 const ResourceType = seq.define('Resource', {
