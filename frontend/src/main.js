@@ -35,6 +35,7 @@ const renderIndex = async () => {
 
 const renderArticle = async () => {
     const split = window.location.href.split('/');
+    const clientHeight = document.querySelector('body').clientHeight;
     const domPercentage = document.querySelector('#percentage');
     const domTimeLeft = document.querySelector('#time-left');
     const domReadingInfo = document.querySelector('#reading-info');
@@ -48,7 +49,7 @@ const renderArticle = async () => {
         domContent.innerHTML = cnt;
         const max = domContent.offsetHeight;
         const readingState = new ReadingState(key, max, cnt.split(' ').length, (pos) => {
-            window.scrollTo(0, pos - 400);
+            window.scrollTo(0, pos - clientHeight);
         });
         domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
         window.addEventListener('scroll', (e) => {

@@ -199,6 +199,7 @@ a {
 }
 
 
+
 .article-list-elem-link {
   display: flex;
   justify-content: flex-start;
@@ -302,8 +303,17 @@ footer {
   text-align: center;
 }
 
+.centered {
+  text-align: center;
+}
+
+.nomarg {
+  margin-bottom: 0;
+}
+
 .article-img {
   max-width: 100%;
+  display: inline-block;
 }
 
 .len-select:hover {
