@@ -142,7 +142,10 @@ a {
   width: 100%;
   border-bottom: 1px solid $font-color-light;
   line-height: 0.1em;
-  
+}
+
+.res-h2 {
+  font-size: $font-hl-sm;
 }
 
 #resources {
@@ -152,7 +155,6 @@ a {
 
 .res-link-wrap {
   margin-top: 2%;
-  margin-left: 2%;
   width: 100%;
 }
 

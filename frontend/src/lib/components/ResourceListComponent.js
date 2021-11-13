@@ -21,9 +21,21 @@ class ResourceListComponent extends Component {
         let cnt = "";
         for ( let key of this.list.keys() ) {
             cnt += "<h1 class='res-hl'><span>" + key + "</span></h1>";
-            const elems = this.list.get(key);
+            let elems = this.list.get(key);
+            const types = new Map();
             for( let e of elems ) {
-                cnt += e.render();
+                const k = e.type;
+                if( !types.has(k) ) {
+                    types.set(k, []);
+                }
+                types.get(k).push(e);
+            }
+            for( let t of types.keys() ) {
+                cnt += "<h2 class='res-h2'><span>" + t + ":</span></h2>";
+                elems = types.get(t);
+                for( let e of elems ) {
+                    cnt += e.render();
+                }
             }
         }
         return cnt;
