@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const Factory = require('../../lib/Factory');
 
 const Category = require('./Category');
-const Text = require('./Text');
+const ResourceType = require('./ResourceType');
 
 const seq = Factory.getORM();
 
@@ -21,9 +21,13 @@ const Resource = seq.define('Resource', {
     },
     title: {
         type: DataTypes.TEXT
+    },
+    author: {
+        type: DataTypes.STRING
     }
 });
 
 Resource.belongsTo(Category, {as: 'category'});
+Resource.belongsTo(ResourceType, {as: 'type'});
 
 module.exports = Resource;
