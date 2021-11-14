@@ -46,7 +46,6 @@ class ReadingState {
      * Save current position to localStorage
      */
     savePosition() {
-        console.log("Saving position " + this._position);
         localStorage.setItem(this._key, JSON.stringify({
             position: this._position
         }));
