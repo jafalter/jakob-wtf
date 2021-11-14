@@ -25,6 +25,7 @@ const TIME_LEFT_DE = "verbleibend";
 const TIME_LEFT_EN = "left";
 const POS_SAVE_EN = "- position saved...";
 const POS_SAVE_DE = "- Position gespeichert...";
+let readingState = null;
 
 const renderIndex = async () => {
     const articles = await api.fetchArticles();
@@ -35,7 +36,6 @@ const renderIndex = async () => {
 
 const renderArticle = async () => {
     const split = window.location.href.split('/');
-    const clientHeight = document.querySelector('body').clientHeight;
     const domPercentage = document.querySelector('#percentage');
     const domTimeLeft = document.querySelector('#time-left');
     const domReadingInfo = document.querySelector('#reading-info');
@@ -43,38 +43,16 @@ const renderArticle = async () => {
     const domProgress = document.querySelector('#progress');
     const key = split[split.length-1];
     const ln = lang.getLanguage();
-    api.fetchArticleContent(key, ln).then((cnt) => {
+
+    try {
         const domContent = document.querySelector('#article-txt');
+        let cnt = await api.fetchArticleContent(key, ln);
+        const details = await api.fetchArticleDetails(key);
         cnt = cnt.replaceAll(':assets:', Factory.getAssetsUrl());
         domContent.innerHTML = cnt;
         const max = domContent.offsetHeight;
-        const readingState = new ReadingState(key, max, cnt.split(' ').length, (pos) => {
-            window.scrollTo({ top : pos });
-        });
+        readingState = new ReadingState(key, max, cnt.split(' ').length);
         domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
-        window.addEventListener('scroll', (e) => {
-            const position = window.pageYOffset;
-            readingState.updatePosition(position);
-            domPercentage.innerText = readingState.getPercentage();
-            domTimeLeft.innerText = readingState.getRemainingTime();
-            if( readingState.isAtEnd() && !domProgress.classList.contains('collapsed') ) {
-                domProgress.classList.add('collapsed');
-            }
-            else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
-                domProgress.classList.remove('collapsed');
-            }
-        });
-        window.setInterval(() => {
-            readingState.savePosition();
-            domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
-            setTimeout(() => {
-                domReadingInfo.textContent = "";
-            }, 5000);
-        }, 10000);
-    }, (e) => {
-        handleError(e);
-    });
-    api.fetchArticleDetails(key).then((details) => {
         const date = new Date(details.createdAt);
         let description = "";
         let title = "";
@@ -102,9 +80,36 @@ const renderArticle = async () => {
             month: 'long',
             day: 'numeric'
         });
-    }, (e) => {
+        window.addEventListener('scroll', (e) => {
+            const position = window.pageYOffset;
+            readingState.updatePosition(position);
+            domPercentage.innerText = readingState.getPercentage();
+            domTimeLeft.innerText = readingState.getRemainingTime();
+            if( readingState.isAtEnd() && !domProgress.classList.contains('collapsed') ) {
+                domProgress.classList.add('collapsed');
+            }
+            else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
+                domProgress.classList.remove('collapsed');
+            }
+        });
+        window.setInterval(() => {
+            readingState.savePosition();
+            domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
+            setTimeout(() => {
+                domReadingInfo.textContent = "";
+            }, 5000);
+        }, 10000);
+        window.setTimeout(() => {
+            if( readingState != null ) {
+                const lastPos = readingState.position;
+                if( lastPos > 0 ) {
+                    window.scrollTo({top : lastPos});
+                }
+            }
+        }, 50);
+    } catch (e) {
         handleError(e);
-    })
+    }
 };
 
 const renderResources = async () => {
@@ -166,7 +171,7 @@ const switchToEnglish = (isDev) => {
     else {
         window.location.href = window.location.href.replace('de', 'en');
     }
-}
+};
 
 const switchToGerman = (isDev) => {
     if( isDev )  {
@@ -176,7 +181,7 @@ const switchToGerman = (isDev) => {
     else {
         window.location.href = window.location.href.replace('en', 'de');
     }
-}
+};
 
 const setupLangChangeListener = () => {
     const isDev = window.location.hostname === 'localhost';
@@ -222,6 +227,7 @@ const postRenderActions = () => {
     const domArticleCnt = document.querySelector('#article-content');
     const domArticlesLst = document.querySelector('#articles-list');
 
+    // Sidepanel open and close
     domSidePanelBtn.addEventListener('click', () => {
         if( domSidePanel.classList.contains('collapsed') ) {
             domSidePanel.classList.remove('collapsed');

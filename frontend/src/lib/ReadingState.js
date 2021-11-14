@@ -12,7 +12,6 @@ class ReadingState {
         if( memState !== null ) {
             const parsed = JSON.parse(memState);
             this._position = parsed.position;
-            cb(parsed.position);
         }
         else {
             this._position = 0;
@@ -47,9 +46,14 @@ class ReadingState {
      * Save current position to localStorage
      */
     savePosition() {
+        console.log("Saving position " + this._position);
         localStorage.setItem(this._key, JSON.stringify({
             position: this._position
         }));
+    }
+
+    get position() {
+        return this._position;
     }
 
     /**
