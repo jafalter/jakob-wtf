@@ -25,6 +25,10 @@ const TIME_LEFT_DE = "verbleibend";
 const TIME_LEFT_EN = "left";
 const POS_SAVE_EN = "- position saved...";
 const POS_SAVE_DE = "- Position gespeichert...";
+
+const AUTHOR_TXT_EN = "by";
+const AUTHOR_TXT_DE = "von";
+
 let readingState = null;
 
 const renderIndex = async () => {
@@ -42,6 +46,7 @@ const renderArticle = async () => {
     const domReadingLeft = document.querySelector('#reading-left');
     const domProgress = document.querySelector('#progress');
     const domAuthor = document.querySelector('#author');
+    const domFrom = document.querySelector('#from-author');
     const key = split[split.length-1];
     const ln = lang.getLanguage();
 
@@ -69,6 +74,7 @@ const renderArticle = async () => {
         domHl.innerHTML = title;
         const domDate = document.querySelector('#article-date');
         const domImg = document.querySelector('#article-img');
+        domFrom.innerHTML = lang.getLanguage() === 'EN' ? AUTHOR_TXT_EN : AUTHOR_TXT_DE;
         document.querySelector('meta[name="title"]').setAttribute("content", "JAKOB.WTF - " + title);
         document.querySelector('meta[property="og:title"]').setAttribute("content", "JAKOB.WTF - " +  title);
         document.querySelector('meta[name="description"]').setAttribute("content", description);
