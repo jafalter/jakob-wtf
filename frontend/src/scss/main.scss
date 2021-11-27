@@ -65,6 +65,15 @@ body {
   font-size: $font-size-s;
 }
 
+#article-author{
+  color: $font-color-a;
+  font-size: $font-size-s2;
+}
+
+#author {
+  font-weight: bold;
+}
+
 .article-quote {
   display: block;
   margin: 40px;

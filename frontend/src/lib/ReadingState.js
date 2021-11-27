@@ -31,7 +31,7 @@ class ReadingState {
      * @return {boolean}
      */
     isAtEnd(height) {
-        return (this._end - this._position) <= 250;
+        return (this._end - this._position) <= 500;
     }
 
     /**
