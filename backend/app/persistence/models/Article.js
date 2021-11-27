@@ -16,6 +16,9 @@ const Article = seq.define('Article', {
     image : {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    author: {
+        type: DataTypes.STRING
     }
 });
 
