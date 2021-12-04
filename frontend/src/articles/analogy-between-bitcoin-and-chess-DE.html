@@ -1,50 +1,139 @@
 <div class="txt-block">
-    Understanding Bitcoin is not easy. Some aspects of it are just so different from anything that we know that it requires serious work and commitment to understand them completely. Take, for instance, the aspect that Bitcoins fundamentals such as the number of new coins issued are unchangeable. Even educated people sometimes fail to grasp this concept. A good example is this tweet by Angela Walch, a blockchain researcher, asking why one can’t just remove the hard limit of the 21 million maximum supply in Bitcoin.
+    <p>Bitcoin zu verstehen ist nicht einfach. Einige Aspekte sind einfach so anders als alles, was wir kennen, dass es ernsthaften Aufwand und Engagement erfordert, sie vollständig zu verstehen. Nehmen wir zum Beispiel den Aspekt, dass fundamentale Regeln wie die Ausschüttung neuer Bitcoins unveränderlich sind. Selbst manche gebildete Menschen haben Schwierigkeiten, dieses Konzept zu begreifen.<br/>
+        Ein gutes Beispiel ist dieser Tweet von Angela Walch, einer Blockchain-Forscherin, die fragt, warum man nicht einfach die harte Höchstmenge von 21 Millionen in Bitcoin aufheben kann.
+    </p>
+    <p class="centered nomarg"><img onload="imgCallback()" onerror="imgCallback()" class="article-img" src=":assets:/analogybitcoin/1.jpg"
+                                    alt="Tweet, der sagt: Wenn ich morgen einen technisch fundierten Pull-Request einreichen würde, der die 21-mm-Obergrenze in Bitcoin aufheben würde, was hält ihn davon ab, in die nächste Version von Bitcoin core aufgenommen zu werden"/>
+    </p>
+    <p class="img-subtxt">Angela Walch ist Professorin für Recht an der St. Mary's University School of Law in San Antonio, Texas, und ist wissenschaftliche Mitarbeiterin am UCL Centre for Blockchain Technologies.</p>
 </div>
 
 <div class="txt-block">
-    The reason why this particular concept is so hard to get is that the software we interact with daily is dynamic. Think of your Windows PC or any mobile app that you run on your phone, these change all the time. The developers can roll out a new update whenever they feel like, and unless you take active action against it, your software will update most of the time automatically. With other applications such as web apps, you have even less control, since their code entirely resides on a server. Once the developers update the application code deployed on the servers, it will immediately start playing out the new version to users, if they like it or not.
+    <p>Der Grund, warum dieses spezielle Konzept so schwer zu verstehen ist, liegt darin, dass die Software, mit der wir täglich interagieren, dynamisch ist. Denken Sie an Ihren PC oder jede mobile Anwendung, die Sie auf Ihrem Smartphone ausführen, diese ändern sich ständig. Die Entwickler können ein neues Update herausbringen, wann immer ihnen danach ist, und wenn Sie nicht aktiv dagegen vorgehen, wird sich Ihre Software die meiste Zeit automatisch aktualisieren.
+    </p>
+    <p>Bei anderen Anwendungen, wie z. B. Webanwendungen, haben Sie noch weniger Kontrolle, da sich der gesamte Code auf einem Server befindet. Sobald die Entwickler den auf den Servern bereitgestellten Anwendungscode aktualisieren, liefert die Applikation sofort die neue Version an die Benutzer aus, ob sie ihnen gefällt oder nicht.
+    </p>
 </div>
 
 <div class="txt-block">
-    To understand why this is different for Bitcoin, we can look at the popular game chess as an analogy. Chess has a pretty long history. It has been around for about one and a half millennia. Chess originated from a game called Chaturanga, which was fundamentally very similar to its modern counterpart [1].
+    <p>
+        Um zu verstehen, warum dies bei Bitcoin anders ist, können wir das beliebte Spiel Schach als Analogie betrachten. Schach hat eine ziemlich lange Geschichte. Es gibt es seit etwa anderthalb Jahrtausenden. Das Schachspiel entstand aus einem Spiel namens Chaturanga, das im Grunde seinem modernen Gegenstück sehr ähnlich war <a
+            href="https://archive.org/details/historyofchess00murr">[1]</a>.
+    </p>
+    <p class="centered nomarg"><img onload="imgCallback()" onerror="imgCallback()" class="article-img" src=":assets:/analogybitcoin/2.png"
+                                    alt="Ein Spielbrett mit einer Ausgangsposition, die dem Schachspiel sehr ähnlich ist"/></p>
+    <p class="img-subtxt">Chaturanga-Startaufstellung.</p>
+    <p>
+        Als das Spiel durch Asien wanderte, entwickelten sich lokale Varianten wie Xiangqi (chinesisches Schach), Shogi (japanisches Schach),
+        Sittuyin (burmesisches Schach) und Makruk (thailändisches Schach), die alle ein etwas anderes Regelwerk haben. Letztendlich
+        wurde es in Europa zu seiner modernen Form, die als Schach bekannt ist, und verbreitete sich über den ganzen Kontinent. Seltsamerweise mochte die damals sehr mächtige Kirche das Spiel nicht, verbot es sogar in einigen Gebieten Europas und exkommunizierte seine Spieler <a href="http://www.chessmaniac.com/chess-condemned-and-banned/">[2]</a>. Da auch einige moderne Nationalstaaten Bitcoin verbieten, können wir hier bereits eine auffällige Ähnlichkeit erkennen.
+    </p>
+    <p>
+        Der Hauptpunkt, den ich ansprechen möchte, dreht sich jedoch um das Regelwerk von Schach, das aus dem Spielbrett besteht,
+        den verschiedenen Figuren, ihren Fähigkeiten, den Startpositionen, und schließlich der Siegbedingung. Wenn sich eine dieser fundamentalen Regeln
+        ändert, haben wir ein neues Spiel, ein Spiel, das mit der vorherigen Version nicht kompatibel ist. Eine Person versucht Makruk zu spielen, kann nicht mit einer anderen Person spielen, die versucht, Chaturanga zu spielen.
+        Hier können wir eine Parallele zum Bitcoin-Netzwerk ziehen.
+    </p>
+</div>
+
+<p class="centered nomarg"><img onload="imgCallback()" onerror="imgCallback()" class="article-img" src=":assets:/analogybitcoin/3.jpg"
+                                alt="Eine Weltkarte mit der Verteilung von 10000 Bitcoin nodes"/></p>
+<p class="img-subtxt">Karte der aktiven Bitcoin-Knoten. Der Screenshot stammt von https://bitnodes.io/.</p>
+
+<div class="txt-block">
+    <p>
+        Zum Zeitpunkt der Erstellung dieses Artikels besteht das Bitcoin-Netzwerk aus mehr als 10.000 Nodes, die ständig miteinander kommunizieren. Sie tauschen die neuesten Blöcke und Transaktionen aus und verifizieren permanent die Integrität des Netzwerks. Seine Grundregeln sind konsistent und unverändert seit dem ersten Tag und daher so statisch wie die Regeln im Schach. Wenn jemand die Regeln in einer Weise ändern möchte, die mit dem bisherigen Regelwerk unvereinbar ist, könnte er nicht mehr mit den anderen Teilnehmern des Netzwerks sprechen, was dem Beginn eines eigenen Spiel gleicht. Eine solche Trennung ist das, was mit den zahllosen Kopien von Bitcoin, wie Litecoin, Dogecoin, oder Bitcoin Cash passiert ist.
+    </p>
+    <span class="article-quote">
+        “Es liegt in der Natur von Bitcoin, dass mit der Veröffentlichung von Version 0.1 das Kerndesign für den Rest seiner Lebensdauer in Stein gemeißelt war.” — Satoshi Nakamoto <a
+            href="https://bitcointalk.org/index.php?topic=195.msg1611#msg1611">[3]</a>.
+    </span>
 </div>
 
 <div class="txt-block">
-    As the game traveled across Asia, local variants such as Xiangqi (Chinese chess), Shogi (Japanese chess), Sittuyin (Burmese chess), and Makruk (Thai chess) developed, all with a slightly different ruleset. Eventually, in Europe, it became its modern form known as chess and spread all across the continent. Funnily enough, the back then very powerful Church did not like the game, even banning it in some areas of Europe and excommunicating its players [2]. With some modern nation-states outlawing Bitcoin, we can already see a striking similarity here.
-    However, the main point I want to make revolves around the ruleset of chess, being composed of the gameboard, the different pieces, starting positions, their abilities, and finally, the win condition. If any of these changes, we have a new game, a game that is incompatible with its previous version. One person trying to play Makruk couldn’t play with another person trying to play Chaturanga.
-    Here is where we can draw a similarity to the Bitcoin network.
+    <p>
+        To understand why it is hard to change the rules of Bitcoin from one day to another, it helps again to think
+        about chess. Imagine somebody would believe it’s a great idea to adjust the size of the board on which the game
+        is played. He imagines it would be better to play it on a board twice the size, however instead of creating a
+        new variant of chess; his goal is to make every chess player adopt his new playboard. <br/>
+        It would be easy enough to convince some of his friends and then play together with them, but convincing the
+        entire chess player base would be a practically impossible task. He would have to talk to every chess player in
+        the world, tournament hosts, game makers, etc. and convenience them all to adopt his idea. Without a central
+        power enforcing the change of the rule, this is undoable. Such a power does neither exist in chess nor Bitcoin.
+    </p>
+    <p>
+        A similar attempt was made to the Bitcoin network to double the size of the blocks recorded on the blockchain. A
+        change that would have rendered new nodes running the latest software unable to talk to older nodes running the
+        old software. Eventually, the attempt failed because it was not possible to convenience the majority of the
+        “players” to switch to the new ruleset, and a new “game” (better known as Bitcoin Cash) emerged <a
+            href="https://en.bitcoin.it/wiki/SegWit2x">[4]</a>.
+    </p>
 </div>
 
 <div class="txt-block">
-    At the time of writing, the Bitcoin network consists of more than 10.000 nodes continually talking to each other. Exchanging the latest blocks, transactions, and verifying the integrity of the network state. Its fundamental rules are consistent and unchanged since day one and are, therefore, as static as the rules of chess. If somebody would like to change the rules in a way incompatible to the previous ruleset, they could no longer talk to the other participants in the network, which is the equivalent of starting their own separate game. Such a separation is what happened to the countless copies of Bitcoin, such as Litecoin, Dogecoin, or Bitcoin Cash.
-</div>
+    <p>
+        However, this does not mean that Bitcoin is entirely stale. Bitcoins software is continuously being revised and
+        improved by open source developers.
+        It is even possible to enforce new rules via the so-called UASF (User activated soft-forks) as long as they are
+        not in conflict with already existing rules.
+    </p>
+    <p>
+        Again we can try to think in chess terms. In the 15 century, the initial double-step move of the pawn together
+        with the “en passant” rule (which prevents a pawn from using the two-square advance to pass an adjacent enemy
+        pawn without the risk of being captured) was adopted by chess players <a
+            href="https://www.amazon.com/Oxford-Companion-Chess-Second/dp/0198661649">[5]</a>. <br/>
+        This update did not change fundamentals like the board size, the number of pieces, their general abilities, or
+        the winning condition. Still, instead, it added two additional rules only applicable under certain
+        circumstances.
+    </p>
 
-<div class="quote">
-    “The nature of Bitcoin is such that once version 0.1 was released, the core design was set in stone for the rest of its lifetime.” — Satoshi Nakamoto [3]
-</div>
-
-<div class="txt-block">
-    To understand why it is hard to change the rules of Bitcoin from one day to another, it helps again to think about chess. Imagine somebody would believe it’s a great idea to adjust the size of the board on which the game is played. He imagines it would be better to play it on a board twice the size, however instead of creating a new variant of chess; his goal is to make every chess player adopt his new playboard. It would be easy enough to convince some of his friends and then play together with them, but convincing the entire chess player base would be a practically impossible task. He would have to talk to every chess player in the world, tournament hosts, game makers, etc. and convenience them all to adopt his idea. Without a central power enforcing the change of the rule, this is undoable. Such a power does neither exist in chess nor Bitcoin.
-    A similar attempt was made to the Bitcoin network to double the size of the blocks recorded on the blockchain. A change that would have rendered new nodes running the latest software unable to talk to older nodes running the old software. Eventually, the attempt failed because it was not possible to convenience the majority of the “players” to switch to the new ruleset, and a new “game” (better known as Bitcoin Cash) emerged [4].
-</div>
-
-<div class="txt-block">
-    However, this does not mean that Bitcoin is entirely stale. Bitcoins software is continuously being revised and improved by open source developers.
-    It is even possible to enforce new rules via the so-called UASF (User activated soft-forks) as long as they are not in conflict with already existing rules.
-    Again we can try to think in chess terms. In the 15 century, the initial double-step move of the pawn together with the “en passant” rule (which prevents a pawn from using the two-square advance to pass an adjacent enemy pawn without the risk of being captured) was adopted by chess players [5].
-    This update did not change fundamentals like the board size, the number of pieces, their general abilities, or the winning condition. Still, instead, it added two additional rules only applicable under certain circumstances.
-</div>
-
-<div class="txt-block">
-    If two players meet, of which one already adopted the new rule, but the other didn’t, they could still play with each other agreeing to play without the new rule using the same board, same pieces, and same win condition.
-    In the Bitcoin network, the Segwit upgrade from 2017 can be seen from a similar perspective. Proposed by developers as a way to improve Bitcoins scaling, a new type of transaction was introduced, requiring significantly less space. To not break compatibility with users running the old software, a little trick was employed to make it look like a regular old type transaction to users running old software. Eventually, the new rule was adopted as the majority of users updated their software to include the new rule, but even to this day, one could run a node without this rule and would be included in the network.
+    <p class="centered nomarg"><img onload="imgCallback()" onerror="imgCallback()" class="article-img" src=":assets:/analogybitcoin/4.png"
+                                    alt="A chess board displaying the en-passant rule"/></p>
+    <p class="img-subtxt">Chess En passant rule.</p>
 </div>
 
 <div class="txt-block">
-    In conclusion, as the Bitcoin network does not submit to any governing power whatsoever, we find that its fundamental rules are uniquely resistant to any form of change, which we can best explain comparing it to the board game chess. We have also seen that despite this resilience, it is still possible to adopt new rules, as long as they are not in conflict with old ones.
+    <p>
+        If two players meet, of which one already adopted the new rule, but the other didn’t, they could still play with
+        each other agreeing to play without the new rule using the same board, same pieces, and same win condition.
+    </p>
+    <p>
+        In the Bitcoin network, the Segwit upgrade from 2017 can be seen from a similar perspective. Proposed by
+        developers as a way to improve Bitcoins scaling, a new type of transaction was introduced, requiring
+        significantly less space. To not break compatibility with users running the old software, a little trick was
+        employed to make it look like a regular old type transaction to users running old software. Eventually, the new
+        rule was adopted as the majority of users updated their software to include the new rule, but even to this day,
+        one could run a node without this rule and would be included in the network.
+    </p>
+
+    <p class="centered nomarg"><img onload="imgCallback()" onerror="imgCallback()" class="article-img" src=":assets:/analogybitcoin/5.jpg"
+                                    alt="A chart showing the distribution of different versions of bitcoin nodes"/></p>
+    <p class="img-subtxt">Distribution of reachable Bitcoin nodes divided by their version. The screenshot is taken from
+        https://bitnodes.io/.</p>
 </div>
 
 <div class="txt-block">
-    Thank you for reading my article!
+    <p>
+        In conclusion, as the Bitcoin network does not submit to any governing power whatsoever, we find that its
+        fundamental rules are uniquely resistant to any form of change, which we can best explain comparing it to the
+        board game chess. We have also seen that despite this resilience, it is still possible to adopt new rules, as
+        long as they are not in conflict with old ones.
+    </p>
+</div>
+
+<div class="txt-block">
+    Thank you for reading my article!<br/>
+    Consider following me on <a href="https://twitter.com/JakobAbf">Twitter</a>.
+
+    <ul class="sources">
+        <li><a href="https://archive.org/details/historyofchess00murr">A History of Chess - H. J. R. Murray - 1913 </a>
+        </li>
+        <li><a href="http://www.chessmaniac.com/chess-condemned-and-banned/">Chess Condemned and Banned - Bill Wall -
+            accessed via chessmanic.com in 2021</a></li>
+        <li><a href="https://bitcointalk.org/index.php?topic=195.msg1611#msg1611">Re: Transactions and Scripts: DUP
+            HASH160 ... EQUALVERIFY CHECKSIG - Satoshi Nakamoto - accessed via bitcointalk in 2020</a></li>
+        <li><a href="https://en.bitcoin.it/wiki/SegWit2x">SegWit2x - accessed in 2020</a></li>
+        <li><a href="https://www.amazon.com/Oxford-Companion-Chess-Second/dp/0198661649">The Oxford Companion to Chess -
+            David Vincent Hooper - 1984</a></li>
+    </ul>
 </div>
