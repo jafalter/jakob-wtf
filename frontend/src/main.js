@@ -47,14 +47,53 @@ const renderArticle = async () => {
     const domProgress = document.querySelector('#progress');
     const domAuthor = document.querySelector('#author');
     const domFrom = document.querySelector('#from-author');
+    const domContent = document.querySelector('#article-txt');
     const key = split[split.length-1];
+    let cnt = null;
     const ln = lang.getLanguage();
+    let imagesCount = 0;
+    let imagesLoaded = 0;
+
+    window.imgCallback = () => {
+        imagesLoaded++;
+        const allImagesLoaded = imagesLoaded === imagesCount;
+        if(allImagesLoaded) {
+            console.log("Initializing Reading State");
+            // We can initialize the Reading State
+            const max = domContent.offsetHeight;
+            readingState = new ReadingState(key, max, cnt.split(' ').length);
+            domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
+            const lastPos = readingState.position;
+            if( lastPos > 0 ) {
+                window.scrollTo({top : lastPos});
+            }
+            window.addEventListener('scroll', () => {
+                const position = window.pageYOffset;
+                readingState.updatePosition(position);
+                domPercentage.innerText = readingState.getPercentage();
+                domTimeLeft.innerText = readingState.getRemainingTime();
+                if( readingState.isAtEnd() && !domProgress.classList.contains('collapsed') ) {
+                    domProgress.classList.add('collapsed');
+                }
+                else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
+                    domProgress.classList.remove('collapsed');
+                }
+            });
+            window.setInterval(() => {
+                readingState.savePosition();
+                domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
+                setTimeout(() => {
+                    domReadingInfo.textContent = "";
+                }, 5000);
+            }, 10000);
+        }
+    }
 
     try {
-        const domContent = document.querySelector('#article-txt');
-        let cnt = await api.fetchArticleContent(key, ln);
+        cnt = await api.fetchArticleContent(key, ln);
         const details = await api.fetchArticleDetails(key);
         cnt = cnt.replaceAll(':assets:', Factory.getAssetsUrl());
+        imagesCount = (cnt.match(/<img/g) || []).length;
         domContent.innerHTML = cnt;
         domAuthor.innerHTML = details.author;
         const date = new Date(details.createdAt);
@@ -85,39 +124,6 @@ const renderArticle = async () => {
             month: 'long',
             day: 'numeric'
         });
-        window.addEventListener('scroll', (e) => {
-            if(readingState !== null) {
-                const position = window.pageYOffset;
-                readingState.updatePosition(position);
-                domPercentage.innerText = readingState.getPercentage();
-                domTimeLeft.innerText = readingState.getRemainingTime();
-                if( readingState.isAtEnd() && !domProgress.classList.contains('collapsed') ) {
-                    domProgress.classList.add('collapsed');
-                }
-                else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
-                    domProgress.classList.remove('collapsed');
-                }
-            }
-        });
-        window.setInterval(() => {
-            if(readingState !== null) {
-                readingState.savePosition();
-                domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
-                setTimeout(() => {
-                    domReadingInfo.textContent = "";
-                }, 5000);
-            }
-        }, 10000);
-        window.setTimeout(() => {
-            const max = domContent.offsetHeight;
-            console.log("height: " + max);
-            readingState = new ReadingState(key, max, cnt.split(' ').length);
-            domReadingLeft.textContent = lang.getLanguage() === 'DE' ? TIME_LEFT_DE : TIME_LEFT_EN;
-            const lastPos = readingState.position;
-            if( lastPos > 0 ) {
-                window.scrollTo({top : lastPos});
-            }
-        }, 500);
     } catch (e) {
         handleError(e);
     }
