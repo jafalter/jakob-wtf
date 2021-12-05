@@ -33,6 +33,13 @@ body {
   min-height: 100%;
 }
 
+#jakob {
+  height: auto;
+  width: auto;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 .lds-ripple {
   display: inline-block;
   position: relative;
@@ -86,6 +93,11 @@ body {
 
 .txt-block {
   width: 100%;
+}
+
+#about-me {
+  text-align: center;
+  padding-top: 5%;
 }
 
 #article-content {
@@ -179,6 +191,11 @@ a {
 
 .highlight {
   color: $color-highlight;
+}
+
+.error {
+  padding-top: 4%;
+  color: #ff6161;
 }
 
 #articles-list {

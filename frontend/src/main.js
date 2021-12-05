@@ -135,6 +135,19 @@ const renderResources = async () => {
     domContent.innerHTML = new ResourceListComponent(resources).render();
 };
 
+const renderAbout = async () => {
+    const domJakobImg = document.querySelector('#jakob');
+    const domAboutDe = document.querySelector('#about-me-txt-de');
+    const domAboutEn = document.querySelector('#about-me-txt-en');
+    if (lang.getLanguage() === 'DE') {
+        domAboutDe.classList.remove('collapsed');
+    }
+    else {
+        domAboutEn.classList.remove('collapsed');
+    }
+    domJakobImg.setAttribute('src', Factory.getAssetsUrl() + 'jakob.jpg');
+}
+
 const renderDesktopHeader = () => {
     const domDhresources = document.querySelector('#dh-resources');
     const domDhabout = document.querySelector('#dh-about');
@@ -214,6 +227,9 @@ const setupLangChangeListener = () => {
 
 const handleError = (e) => {
     console.error(e);
+    const domContent = document.querySelector('#content');
+    domContent.classList.add('error');
+    domContent.innerHTML = "An unexpected error has happened!";
 };
 
 
