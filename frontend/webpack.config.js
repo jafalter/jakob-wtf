@@ -3,6 +3,13 @@ const path = require('path');
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+
+const appLogo = './images/pixel-bw.png';
+const appName = "JAKOB.WTF";
+const appDesc = "Interesting resources and articles about Bitcoin, Nutrition, Health and Psychology";
+const developerName = "Jakob Abfalter";
+const developerUrl = "Jakob.wtf/about.html";
 
 module.exports = {
     entry: './src/main.js',
@@ -81,6 +88,24 @@ module.exports = {
             inject: false,
             hash: true
         }),
+        new FaviconsWebpackPlugin({
+            logo: appLogo,
+            mode: 'webapp',
+            devMode: 'webapp',
+            prefix: '',
+            favicons: {
+                appName: appName,
+                appDescription: appDesc,
+                developerName: developerName,
+                developerURL: developerUrl,
+                background: '#ddd',
+                theme_color: '#333',
+                icons: {
+                    coast: false,
+                    yandex: false
+                }
+            }
+        })
     ],
     devServer: {
         port: 3000,
