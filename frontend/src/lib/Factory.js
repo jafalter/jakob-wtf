@@ -1,5 +1,6 @@
 import Api from "./Api";
 import cnf from "../cnf/cnf";
+import prodCnf from "../cnf/cnf-prod.json";
 import Lang from "./Lang";
 
 let api = null;
@@ -8,6 +9,9 @@ let lang = null;
 class Factory {
 
     static getCnf() {
+        if(Factory.isProd()) {
+            return prodCnf
+        }
         return cnf;
     }
 
@@ -27,6 +31,14 @@ class Factory {
      */
     static getAssetsUrl() {
         return this.getCnf().assets.url + "/";
+    }
+
+    /**
+     *
+     * @return {boolean}
+     */
+    static isProd() {
+        return process.env.NODE_ENV === 'production';
     }
 
     /**
