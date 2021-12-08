@@ -25,5 +25,9 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1",
     "whatwg-fetch": "^3.6.2"
+  },
+  "dependencies": {
+    "favicons": "^6.2.2",
+    "favicons-webpack-plugin": "^5.0.2"
   }
 }
