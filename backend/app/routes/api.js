@@ -1,6 +1,10 @@
+const crypto = require('crypto');
+const sequelize = require('sequelize');
+
 const ApiController = require('../controller/ApiController');
 const Factory = require('../lib/Factory');
 const Config = require('../lib/Config');
+const Visit = require('../persistence/models/Visit');
 
 const apiController = new ApiController();
 const logger = Factory.getLogger();
@@ -65,6 +69,30 @@ const setupRoutes = (app) => {
             res.sendStatus(500);
         }
     });
+
+    app.post('/api/visit', async (req,res) => {
+        try {
+            if( !authenticate(req) ) {
+                res.sendStatus(401);
+            }
+            else {
+                const body = req.body;
+                const session = crypto.createHash('sha256').update(body.ip).digest('hex');
+                const v = await Visit.create({
+                    id : null,
+                    session: session,
+                    host: body.host,
+                    path: body.path,
+                    dateTime: sequelize.fn('NOW')
+                });
+                await v.save();
+                res.sendStatus(200);
+            }
+        } catch (e) {
+            logger.error("/api/visit failed with " + e.message);
+            res.sendStatus(500);
+        }
+    })
 };
 
 module.exports.setupRoutes = setupRoutes;

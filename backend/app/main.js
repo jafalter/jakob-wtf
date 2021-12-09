@@ -6,6 +6,7 @@ const Category = require('./persistence/models/Category');
 const Text = require('./persistence/models/Text');
 const Resource = require('./persistence/models/Resource');
 const Article = require('./persistence/models/Article');
+const Visit = require('./persistence/models/Visit');
 const app = require('./app');
 
 const logger = Factory.getLogger();
