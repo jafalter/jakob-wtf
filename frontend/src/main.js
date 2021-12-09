@@ -67,7 +67,7 @@ const renderArticle = async () => {
             if( lastPos > 0 ) {
                 window.scrollTo({top : lastPos});
             }
-            window.addEventListener('scroll', () => {
+            const onScroll = () => {
                 const position = window.pageYOffset;
                 readingState.updatePosition(position);
                 domPercentage.innerText = readingState.getPercentage();
@@ -78,7 +78,13 @@ const renderArticle = async () => {
                 else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
                     domProgress.classList.remove('collapsed');
                 }
+            }
+            window.addEventListener('scroll', () => {
+                onScroll();
             });
+            window.addEventListener('touchmove', () => {
+                onScroll();
+            })
             window.setInterval(() => {
                 readingState.savePosition();
                 domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
