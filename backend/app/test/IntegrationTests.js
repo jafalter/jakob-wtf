@@ -7,6 +7,7 @@ const TestUtils = require('./TestUtils');
 
 const sequelize = Factory.getORM();
 
+
 describe('Integration Tests', () => {
 
     before(async () => {
@@ -24,7 +25,7 @@ describe('Integration Tests', () => {
             .set('Authorization', '123')
             .expect(200);
         const parsed = JSON.parse(r.text);
-        assert(parsed.length === 1);
+        assert(parsed.length === 2);
         const article = parsed[0];
         assert(article.category);
         assert(article.title);
@@ -47,11 +48,10 @@ describe('Integration Tests', () => {
             .set('Authorization', '123')
             .expect(200);
         const parsed = JSON.parse(r.text);
-        assert(parsed.length === 1);
+        assert(parsed.length === 21);
         const res = parsed[0];
         assert(res.category);
         assert(res.title);
-        assert(res.title.regionalText.length === 2);
     });
 
     it('Query resources should fail without Authorization', async () => {
@@ -62,7 +62,7 @@ describe('Integration Tests', () => {
 
     it('Should find the article with english key', async () => {
         const r = await supertest(app)
-            .get('/api/article/TheWestonPriceStudy')
+            .get('/api/article/weston-price-traditional-diets')
             .set('Authorization', '123')
             .expect(200);
         const parsed = JSON.parse(r.text);
@@ -71,7 +71,7 @@ describe('Integration Tests', () => {
 
     it('Should find the article with german key', async () => {
         const r = await supertest(app)
-            .get('/api/article/DieWestonPriceStudie')
+            .get('/api/article/weston-price-traditional-diets')
             .set('Authorization', '123')
             .expect(200);
         const parsed = JSON.parse(r.text);
