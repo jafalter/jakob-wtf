@@ -45,7 +45,7 @@ class Api {
         const uri = this.host + "/api/visit";
         const opts = Object.assign({
             method : 'POST',
-            body : {
+            json : {
                 host : window.location.host,
                 path : window.location.pathname
             }
