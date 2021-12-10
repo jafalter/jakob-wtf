@@ -4,6 +4,7 @@ const app = require('../app');
 
 const Factory = require('../lib/Factory');
 const TestUtils = require('./TestUtils');
+const Visit = require('../persistence/models/Visit');
 
 const sequelize = Factory.getORM();
 
@@ -89,6 +90,21 @@ describe('Integration Tests', () => {
         const r = await supertest(app)
             .get('/api/article/DieWestonPriceStudie')
             .expect(401);
+    });
+
+    it('Should save a new visit to database', async () => {
+        const r = await supertest(app)
+            .post('/api/visit')
+            .send({
+                ip: "185.85.35.22",
+                host: "en.jakob.wtf",
+                path: "/article/weston-price-traditional-diets"
+            })
+            .set('Authorization', '123')
+            .set('Content-Type', 'application/json')
+            .expect(200);
+        const visits = await Visit.findAll();
+        assert(visits.length === 1);
     });
 
 });
