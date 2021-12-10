@@ -47,6 +47,7 @@ class Api {
                 host : window.location.host,
                 path : window.location.pathname
             }}, this.opts);
+        fetch(uri, opts);
     }
 
     /**
