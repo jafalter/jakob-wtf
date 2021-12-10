@@ -96,7 +96,6 @@ describe('Integration Tests', () => {
         const r = await supertest(app)
             .post('/api/visit')
             .send({
-                ip: "185.85.35.22",
                 host: "en.jakob.wtf",
                 path: "/article/weston-price-traditional-diets"
             })
