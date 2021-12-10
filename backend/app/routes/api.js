@@ -70,7 +70,7 @@ const setupRoutes = (app) => {
         }
     });
 
-    app.post('/api/visit', async (req,res) => {
+    app.post('/api/visit', async (req, res) => {
         try {
             if( !authenticate(req) ) {
                 res.sendStatus(401);
@@ -83,7 +83,7 @@ const setupRoutes = (app) => {
                     session: session,
                     host: body.host,
                     path: body.path,
-                    dateTime: sequelize.fn('NOW')
+                    dateTime: new Date()
                 });
                 await v.save();
                 res.sendStatus(200);
