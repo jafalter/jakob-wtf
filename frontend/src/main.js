@@ -78,13 +78,13 @@ const renderArticle = async () => {
                 else if( !readingState.isAtEnd() && domProgress.classList.contains('collapsed') ) {
                     domProgress.classList.remove('collapsed');
                 }
-            }
+            };
             window.addEventListener('scroll', () => {
                 onScroll();
             });
             window.addEventListener('touchmove', () => {
                 onScroll();
-            })
+            });
             window.setInterval(() => {
                 readingState.savePosition();
                 domReadingInfo.textContent = lang.getLanguage() === 'DE' ? POS_SAVE_DE : POS_SAVE_EN;
@@ -93,7 +93,7 @@ const renderArticle = async () => {
                 }, 5000);
             }, 10000);
         }
-    }
+    };
 
     try {
         cnt = await api.fetchArticleContent(key, ln);
@@ -120,11 +120,14 @@ const renderArticle = async () => {
         const domDate = document.querySelector('#article-date');
         const domImg = document.querySelector('#article-img');
         domFrom.innerHTML = lang.getLanguage() === 'EN' ? AUTHOR_TXT_EN : AUTHOR_TXT_DE;
+        const imgurl = Factory.getAssetsUrl() + details.image;
         document.querySelector('meta[name="title"]').setAttribute("content", "JAKOB.WTF - " + title);
         document.querySelector('meta[property="og:title"]').setAttribute("content", "JAKOB.WTF - " +  title);
         document.querySelector('meta[name="description"]').setAttribute("content", description);
         document.querySelector('meta[property="og:description"]').setAttribute("content", description);
-        domImg.innerHTML = `<img class="article-img" src="${Factory.getAssetsUrl() + details.image}"  alt="Picture of a traditional scotish family"/>`;
+        document.querySelector('meta[property="og:image"]').setAttribute("content", imgurl);
+        document.querySelector('meta[property="og:url"]').setAttribute("content", "https://jakob.wtf/" + window.location.pathname);
+        domImg.innerHTML = `<img class="article-img" src="${imgurl}"  alt="Picture of a traditional scotish family"/>`;
         domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
             year: 'numeric',
             month: 'long',
@@ -152,7 +155,7 @@ const renderAbout = async () => {
         domAboutEn.classList.remove('collapsed');
     }
     domJakobImg.setAttribute('src', Factory.getAssetsUrl() + 'jakob.jpg');
-}
+};
 
 const renderDesktopHeader = () => {
     const domDhresources = document.querySelector('#dh-resources');
