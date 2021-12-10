@@ -20,7 +20,7 @@ class ResourceListComponent extends Component {
     render() {
         let cnt = "";
         for ( let key of this.list.keys() ) {
-            cnt += "<h1 class='res-hl'><span>" + key + "</span></h1>";
+            cnt += "<div id='resource-category'><h1 class='res-hl'><span>" + key + "</span></h1>";
             let elems = this.list.get(key);
             const types = new Map();
             for( let e of elems ) {
@@ -31,12 +31,13 @@ class ResourceListComponent extends Component {
                 types.get(k).push(e);
             }
             for( let t of types.keys() ) {
-                cnt += "<h2 class='res-h2'><span>" + t + ":</span></h2>";
+                cnt += "<h2 class='res-h2'><span>" + t + "s:</span></h2>";
                 elems = types.get(t);
                 for( let e of elems ) {
                     cnt += e.render();
                 }
             }
+            cnt += '</div>';
         }
         return cnt;
     }
