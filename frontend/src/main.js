@@ -256,6 +256,7 @@ const renderPipeLine = async () => {
     setupLangChangeListener();
     renderDesktopHeader();
     renderSidePanel();
+    api.sendVisit();
     await render();
 };
 
