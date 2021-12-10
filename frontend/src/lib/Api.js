@@ -43,10 +43,13 @@ class Api {
      */
     sendVisit() {
         const uri = this.host + "/api/visit";
-        const opts = Object.assign({body : {
+        const opts = Object.assign({
+            method : 'POST',
+            body : {
                 host : window.location.host,
                 path : window.location.pathname
-            }}, this.opts);
+            }
+            }, this.opts);
         fetch(uri, opts);
     }
 
