@@ -77,7 +77,9 @@ const setupRoutes = (app) => {
             }
             else {
                 const body = req.body;
-                const session = crypto.createHash('sha256').update(body.ip).digest('hex');
+                const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+                const session = crypto.createHash('sha256').update(ip).digest('hex');
+                
                 const v = await Visit.create({
                     id : null,
                     session: session,
