@@ -137,6 +137,7 @@ const renderArticle = async () => {
         document.querySelector('meta[property="og:description"]').remove();
         document.querySelector('meta[property="og:image"]').remove();
         document.querySelector('meta[property="og:url"]').remove();
+        document.querySelector('title').remove();
 
         const ogTitle = document.createElement('meta');
         ogTitle.setAttribute('property', "og:title");
@@ -156,6 +157,8 @@ const renderArticle = async () => {
         const ogUrl = document.createElement('meta');
         ogUrl.setAttribute('property', 'og:url');
         ogUrl.setAttribute('content', metaUrl);
+        const newTitle = document.createElement('title');
+        newTitle.innerText = metaTitle;
 
         head.appendChild(ogTitle);
         head.appendChild(mtitle);
@@ -163,6 +166,7 @@ const renderArticle = async () => {
         head.appendChild(ogDesc);
         head.appendChild(ogImg);
         head.appendChild(ogUrl);
+        head.appendChild(newTitle);
 
         domImg.innerHTML = `<img class="article-img" src="${metaImg}"  alt="Picture of a traditional scotish family"/>`;
         domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
