@@ -123,14 +123,52 @@ const renderArticle = async () => {
         const domDate = document.querySelector('#article-date');
         const domImg = document.querySelector('#article-img');
         domFrom.innerHTML = lang.getLanguage() === 'EN' ? AUTHOR_TXT_EN : AUTHOR_TXT_DE;
-        const imgurl = Factory.getAssetsUrl() + details.image;
-        document.querySelector('meta[name="title"]').setAttribute("content", "JAKOB.WTF - " + title);
-        document.querySelector('meta[property="og:title"]').setAttribute("content", "JAKOB.WTF - " +  title);
-        document.querySelector('meta[name="description"]').setAttribute("content", description);
-        document.querySelector('meta[property="og:description"]').setAttribute("content", description);
-        document.querySelector('meta[property="og:image"]').setAttribute("content", imgurl);
-        document.querySelector('meta[property="og:url"]').setAttribute("content", "https://jakob.wtf/" + window.location.pathname);
-        domImg.innerHTML = `<img class="article-img" src="${imgurl}"  alt="Picture of a traditional scotish family"/>`;
+
+        // Set Meta tags freshly
+        const metaImg = Factory.getAssetsUrl() + details.image;
+        const metaTitle = "JAKOB.WTF - " + title;
+        const metaDesc = description;
+        const metaUrl = "https://jakob.wtf/" + window.location.pathname;
+        const head = document.querySelector('head');
+
+        document.querySelector('meta[name="title"]').remove();
+        document.querySelector('meta[property="og:title"]').remove();
+        document.querySelector('meta[name="description"]').remove();
+        document.querySelector('meta[property="og:description"]').remove();
+        document.querySelector('meta[property="og:image"]').remove();
+        document.querySelector('meta[property="og:url"]').remove();
+        document.querySelector('title').remove();
+
+        const ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', "og:title");
+        ogTitle.setAttribute('content', metaTitle);
+        const mtitle = document.createElement('meta');
+        mtitle.setAttribute('name', 'title');
+        mtitle.setAttribute('content', metaTitle);
+        const mdesc = document.createElement('meta');
+        mdesc.setAttribute('name', 'description');
+        mdesc.setAttribute('content', metaDesc);
+        const ogDesc = document.createElement('meta');
+        ogDesc.setAttribute('property', 'og:description');
+        ogDesc.setAttribute('content', metaDesc);
+        const ogImg = document.createElement('meta');
+        ogImg.setAttribute('property', 'og:image');
+        ogImg.setAttribute('content', metaImg);
+        const ogUrl = document.createElement('meta');
+        ogUrl.setAttribute('property', 'og:url');
+        ogUrl.setAttribute('content', metaUrl);
+        const newTitle = document.createElement('title');
+        newTitle.innerText = metaTitle;
+
+        head.appendChild(ogTitle);
+        head.appendChild(mtitle);
+        head.appendChild(mdesc);
+        head.appendChild(ogDesc);
+        head.appendChild(ogImg);
+        head.appendChild(ogUrl);
+        head.appendChild(newTitle);
+
+        domImg.innerHTML = `<img class="article-img" src="${metaImg}"  alt="Picture of a traditional scotish family"/>`;
         domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
             year: 'numeric',
             month: 'long',
@@ -140,9 +178,9 @@ const renderArticle = async () => {
         domShareBtn.addEventListener('click', () => {
             if(navigator.share) {
                 navigator.share({
-                    title : "JAKOB-WTF - " + title,
-                    url : "https://jakob.wtf" + window.location.pathname,
-                    text : description
+                    title : metaTitle,
+                    url : metaUrl,
+                    text : metaDesc
                 }).catch(console.error)
             }
             else {
