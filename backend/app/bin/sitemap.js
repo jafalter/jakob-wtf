@@ -4,6 +4,7 @@ const Factory = require('../lib/Factory');
 const Language = require('../persistence/models/Language');
 const Category = require('../persistence/models/Category');
 const Text = require('../persistence/models/Text');
+const RegionalText = require('../persistence/models/RegionalText');
 const Resource = require('../persistence/models/Resource');
 const Article = require('../persistence/models/Article');
 const Visit = require('../persistence/models/Visit');
