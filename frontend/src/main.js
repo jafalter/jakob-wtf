@@ -180,7 +180,7 @@ const renderArticle = async () => {
                 navigator.share({
                     title : metaTitle,
                     url : metaUrl,
-                    text : metaDescn
+                    text : metaDesc
                 }).catch(console.error)
             }
             else {
