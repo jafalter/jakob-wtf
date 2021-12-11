@@ -55,6 +55,16 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
+            template: "./src/article-analogy-between-bitcoin-and-chess.html",
+            filename: "./article-analogy-between-bitcoin-and-chess.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/article-weston-price-traditional-diets.html",
+            filename: "./article-weston-price-traditional-diets.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
             template: "./src/resources.html",
             filename: "./resources.html",
             hash: true
