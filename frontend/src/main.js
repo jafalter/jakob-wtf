@@ -41,7 +41,7 @@ const renderIndex = async () => {
 };
 
 const renderArticle = async () => {
-    const split = window.location.href.split('/');
+    const split = window.location.pathname.split('/');
     const domPercentage = document.querySelector('#percentage');
     const domTimeLeft = document.querySelector('#time-left');
     const domReadingInfo = document.querySelector('#reading-info');
