@@ -2,6 +2,8 @@ version: '3.7'
 services:
   backend:
     restart: always
+    volumes:
+      - /var/www/jakob.wtf:/var/www
     init: true
     image: jakob-wtf-backend:latest
     secrets:
