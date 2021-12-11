@@ -19,12 +19,14 @@ const RESOURCES_DE = "RESOURCEN";
 const ABOUT_EN = "ABOUT";
 const ABOUT_DE = "ÜBERMICH";
 const TIP_EN = "TIP";
-const TIP_DE = "SPENDE";
+const TIP_DE = "TIP";
+const SHARE_EN = "SHARE";
+const SHARE_DE = "TEILEN";
 
-const TIME_LEFT_DE = "verbleibend";
+const TIME_LEFT_DE = "verb.";
 const TIME_LEFT_EN = "left";
-const POS_SAVE_EN = "- position saved...";
-const POS_SAVE_DE = "- Position gespeichert...";
+const POS_SAVE_EN = "- pos. saved...";
+const POS_SAVE_DE = "- Pos. gesp...";
 
 const AUTHOR_TXT_EN = "by";
 const AUTHOR_TXT_DE = "von";
@@ -48,6 +50,7 @@ const renderArticle = async () => {
     const domAuthor = document.querySelector('#author');
     const domFrom = document.querySelector('#from-author');
     const domContent = document.querySelector('#article-txt');
+    const domShareBtn = document.querySelector('#share-btn');
     const key = split[split.length-1];
     let cnt = null;
     const ln = lang.getLanguage();
@@ -132,6 +135,20 @@ const renderArticle = async () => {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
+        });
+        domShareBtn.classList.remove('hidden');
+        domShareBtn.addEventListener('click', () => {
+            if(navigator.share) {
+                navigator.share({
+                    title : "JAKOB-WTF - " + title,
+                    url : "https://jakob.wtf" + window.location.pathname,
+                    text : description
+                }).catch(console.error)
+            }
+            else {
+                const txt = lang.getLanguage() === 'DE' ? "Ihr Browser unterstützt diese Funktion nicht! Bitte teilen sie die Seiten manuell." : "Direct share not supported on your browser, please copy the page URL manually.";
+                alert(txt);
+            }
         });
     } catch (e) {
         handleError(e);

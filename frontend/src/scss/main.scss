@@ -77,6 +77,8 @@ body {
   }
 }
 
+
+
 #progress.collapsed {
   display: none;
 }
@@ -336,6 +338,18 @@ footer {
   cursor: pointer;
 }
 
+#share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border-radius: 5px;
+  width: 100px;
+  padding: 6px 9px 5px;
+  border: 1px solid $font-color-light;
+  color: $font-color-light
+}
+
 #article-content a {
   color: $color-highlight;
   cursor: pointer;
@@ -350,7 +364,12 @@ footer {
 }
 
 .shrink {
-  max-width: 60%;
+  max-width: 55%;
+  padding: 1% !important;
+}
+
+#share-line {
+  display: none;
 }
 
 
@@ -392,6 +411,10 @@ footer {
   cursor: pointer;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .selected-len {
   color: $color-highlight;
 }
@@ -401,8 +424,23 @@ footer {
     display: none;
   }
 
+  #article-hl {
+    font-size: $font-hl-sm;
+  }
+
   #content {
     border: none;
+  }
+
+  #share-line {
+    display: block;
+    text-align: center;
+  }
+
+  #share-btn-svg {
+    display: inline-block;
+    width: 10px;
+    margin-left: 5px;
   }
 
   #mobhead {
