@@ -127,7 +127,7 @@ body {
 
 .article-quote {
   display: block;
-  margin: 40px;
+  margin: 5%;
   font-size: $font-hl-sm;
   font-style: italic;
 }
@@ -420,6 +420,10 @@ footer {
 }
 
 @media screen and (max-width: $max-width-s) {
+  html {
+    font-size: $font-size-mob;
+  }
+
   #deskhead {
     display: none;
   }
@@ -547,6 +551,7 @@ footer {
   .res-hl {
     font-size: $font-hl-sm;
   }
+
 }
 
 @media screen and (min-width: $max-width-s) {

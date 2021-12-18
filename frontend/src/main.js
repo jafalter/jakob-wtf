@@ -129,46 +129,8 @@ const renderArticle = async () => {
         const metaTitle = "JAKOB.WTF - " + title;
         const metaDesc = description;
         const metaUrl = "https://jakob.wtf/" + window.location.pathname;
-        const head = document.querySelector('head');
 
-        document.querySelector('meta[name="title"]').remove();
-        document.querySelector('meta[property="og:title"]').remove();
-        document.querySelector('meta[name="description"]').remove();
-        document.querySelector('meta[property="og:description"]').remove();
-        document.querySelector('meta[property="og:image"]').remove();
-        document.querySelector('meta[property="og:url"]').remove();
-        document.querySelector('title').remove();
-
-        const ogTitle = document.createElement('meta');
-        ogTitle.setAttribute('property', "og:title");
-        ogTitle.setAttribute('content', metaTitle);
-        const mtitle = document.createElement('meta');
-        mtitle.setAttribute('name', 'title');
-        mtitle.setAttribute('content', metaTitle);
-        const mdesc = document.createElement('meta');
-        mdesc.setAttribute('name', 'description');
-        mdesc.setAttribute('content', metaDesc);
-        const ogDesc = document.createElement('meta');
-        ogDesc.setAttribute('property', 'og:description');
-        ogDesc.setAttribute('content', metaDesc);
-        const ogImg = document.createElement('meta');
-        ogImg.setAttribute('property', 'og:image');
-        ogImg.setAttribute('content', metaImg);
-        const ogUrl = document.createElement('meta');
-        ogUrl.setAttribute('property', 'og:url');
-        ogUrl.setAttribute('content', metaUrl);
-        const newTitle = document.createElement('title');
-        newTitle.innerText = metaTitle;
-
-        head.appendChild(ogTitle);
-        head.appendChild(mtitle);
-        head.appendChild(mdesc);
-        head.appendChild(ogDesc);
-        head.appendChild(ogImg);
-        head.appendChild(ogUrl);
-        head.appendChild(newTitle);
-
-        domImg.innerHTML = `<img class="article-img" src="${metaImg}"  alt="Picture of a traditional scotish family"/>`;
+        domImg.innerHTML = `<img class="article-img" src="${metaImg}"  alt="Article title picture"/>`;
         domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
             year: 'numeric',
             month: 'long',
@@ -324,6 +286,8 @@ const postRenderActions = () => {
     const domSidePanel = document.querySelector('#mobile-sidepanel');
     const domArticleCnt = document.querySelector('#article-content');
     const domArticlesLst = document.querySelector('#articles-list');
+    const domResources = document.querySelector('#resources');
+    const domAboutme = document.querySelector('#about-me');
 
     // Sidepanel open and close
     domSidePanelBtn.addEventListener('click', () => {
@@ -336,6 +300,12 @@ const postRenderActions = () => {
             if( domArticlesLst ) {
                 domArticlesLst.classList.add('shrink');
             }
+            if( domResources ) {
+                domResources.classList.add('shrink');
+            }
+            if( domAboutme ) {
+                domAboutme.classList.add('shrink');
+            }
 
         }
         else {
@@ -346,6 +316,12 @@ const postRenderActions = () => {
             }
             if( domArticlesLst ) {
                 domArticlesLst.classList.remove('shrink');
+            }
+            if( domResources ) {
+                domResources.classList.remove('shrink');
+            }
+            if( domAboutme ) {
+                domAboutme.classList.remove('shrink');
             }
         }
     });
