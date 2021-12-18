@@ -286,6 +286,8 @@ const postRenderActions = () => {
     const domSidePanel = document.querySelector('#mobile-sidepanel');
     const domArticleCnt = document.querySelector('#article-content');
     const domArticlesLst = document.querySelector('#articles-list');
+    const domResources = document.querySelector('#resources');
+    const domAboutme = document.querySelector('#about-me');
 
     // Sidepanel open and close
     domSidePanelBtn.addEventListener('click', () => {
@@ -298,6 +300,12 @@ const postRenderActions = () => {
             if( domArticlesLst ) {
                 domArticlesLst.classList.add('shrink');
             }
+            if( domResources ) {
+                domResources.classList.add('shrink');
+            }
+            if( domAboutme ) {
+                domAboutme.classList.add('shrink');
+            }
 
         }
         else {
@@ -308,6 +316,12 @@ const postRenderActions = () => {
             }
             if( domArticlesLst ) {
                 domArticlesLst.classList.remove('shrink');
+            }
+            if( domResources ) {
+                domResources.classList.remove('shrink');
+            }
+            if( domAboutme ) {
+                domAboutme.classList.remove('shrink');
             }
         }
     });
