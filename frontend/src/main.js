@@ -127,8 +127,8 @@ const renderArticle = async () => {
         // Set Meta tags freshly
         const metaImg = Factory.getAssetsUrl() + details.image;
         const metaTitle = "JAKOB.WTF - " + title;
-        const metaDesc = description;
-        const metaUrl = "https://jakob.wtf/" + window.location.pathname;
+        const metaDesc = "";
+        const metaUrl = "https://jakob.wtf" + window.location.pathname;
 
         domImg.innerHTML = `<img class="article-img" src="${metaImg}"  alt="Article title picture"/>`;
         domDate.innerHTML = date.toLocaleDateString(lang.getLanguage() === 'EN' ? "en-US" : 'de-DE', {
