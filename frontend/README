@@ -1,0 +1,17 @@
+Local dev:
+
+1) Run npm start in statics directory
+2) Run npm start in frontend directory
+3) localhost:3000
+
+To create a new article:
+
+1) Create raw .html files in src/articles
+2) Create og file in src/templates
+3) Create .html file in src referencing the og
+4) Add HtmlWebPackPlug for main article file
+5) Add HtmlWebPackPlugin rules for raw articles files in webpack.config.js (for both EN and DE)
+6) Title image goes into statics directory (should be jpg and 650 width)
+7) Article assets go into statics/{new directory}
+8) Create the entry in articles table (needs a title, subtext and key)
+9) Frontend and Statics builds are required on TC

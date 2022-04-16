@@ -65,6 +65,11 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
+            template: "./src/article-bitcoin-the-hero.html",
+            filename: "./article-bitcoin-the-hero.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
             template: "./src/resources.html",
             filename: "./resources.html",
             hash: true
@@ -95,6 +100,18 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/articles/analogy-between-bitcoin-and-chess-DE.html",
             filename: "./articles/src/analogy-between-bitcoin-and-chess-DE.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/bitcoin-the-hero-EN.html",
+            filename: "./articles/src/bitcoin-the-hero-EN.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/bitcoin-the-hero-DE.html",
+            filename: "./articles/src/bitcoin-the-hero-DE.html",
             inject: false,
             hash: true
         }),
