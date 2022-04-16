@@ -11,7 +11,7 @@ To create a new article:
 3) Create .html file in src referencing the og
 4) Add HtmlWebPackPlug for main article file
 5) Add HtmlWebPackPlugin rules for raw articles files in webpack.config.js (for both EN and DE)
-6) Title image goes into statics directory (should be jpg and 650 width)
+6) Title image goes into statics directory (should be jpg and 550 width)
 7) Article assets go into statics/{new directory}
 8) Create the entry in articles table (needs a title, subtext and key)
 9) Frontend and Statics builds are required on TC

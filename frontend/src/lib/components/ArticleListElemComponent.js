@@ -34,7 +34,8 @@ class ArticleListElemComponent extends Component {
 
 
     render() {
-        return `<a href="${this.link}"><li class="article-list-elem ${this.first ? '' : 'notfirst-elem'}">
+        return `<li class="article-list-elem ${this.first ? '' : 'notfirst-elem'}">
+<a class="${this.first ? 'article-list-elem-link' : ''}" href="${this.link}">
 <div class="article-list-elem-thumbnail ${this.first ? '' : 'notfirst-thumbnail'}">
     <img class="article-list-elem-img rounded ${this.first ? '' : 'notfirst-img'}" src="${this.img}" alt="${this.title}" />
 </div>
@@ -44,7 +45,7 @@ class ArticleListElemComponent extends Component {
     <p class="article-list-elem-subtxt ${this.first ? '' : 'notfirst-subtxt'}">${this.subtxt}</p>
     ${ this.first ? '<button class="article-list-elem-btn">READ</button>' : ''}
 </div>
-</li></a>`;
+</a></li>`;
     }
 }
 
