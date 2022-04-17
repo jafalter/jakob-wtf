@@ -14,4 +14,5 @@ To create a new article:
 6) Title image goes into statics directory (should be jpg and 550 width)
 7) Article assets go into statics/{new directory}
 8) Create the entry in articles table (needs a title, subtext and key)
-9) Frontend and Statics builds are required on TC
+9) Add rewrite rule in webserver/default.conf
+10) Frontend and Statics builds are required on TC
