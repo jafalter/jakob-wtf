@@ -9,6 +9,9 @@ class ApiController {
         const articles = await Articles.findAll({
             include: [
                 { all: true, nested: true }
+            ],
+            order: [
+                ['createdAt', 'DESC']
             ]
         });
         return  articles;
