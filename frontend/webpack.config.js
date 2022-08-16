@@ -70,6 +70,11 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
+            template: "./src/article-towards-a-more-stable-bitcoin.html",
+            filename: "./article-towards-a-more-stable-bitcoin.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
             template: "./src/resources.html",
             filename: "./resources.html",
             hash: true
@@ -112,6 +117,18 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/articles/bitcoin-the-hero-DE.html",
             filename: "./articles/src/bitcoin-the-hero-DE.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/towards-a-more-stable-bitcoin-EN.html",
+            filename: "./articles/src/towards-a-more-stable-bitcoin-EN.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/towards-a-more-stable-bitcoin-DE.html",
+            filename: "./articles/src/towards-a-more-stable-bitcoin-DE.html",
             inject: false,
             hash: true
         }),
