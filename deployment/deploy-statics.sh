@@ -1,4 +1,3 @@
 #!/bin/bash
 
-cp -R statics/* /var/www/jakob.wtf/statics/
-rm -R statics
+cp -R * /var/www/jakob.wtf/statics/
