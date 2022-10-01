@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Jakob.wtf Backend Deployment
+name: Jakob.wtf Frontend Deployment
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
