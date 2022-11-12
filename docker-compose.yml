@@ -24,7 +24,7 @@ services:
       - auth
     environment:
       NODE_ENV: production
-  reverse-proxy:
+  jakob-reverse-proxy:
     restart: always
     init: true
     image: jakob-wtf-proxy:latest
@@ -34,9 +34,8 @@ services:
     volumes:
       - /var/www/jakob.wtf:/var/www
       - /etc/letsencrypt/:/etc/letsencrypt/
-    ports:
-      - "144.91.87.46:80:80"
-      - "144.91.87.46:443:443"
+    networks:
+      jakob-proxy:
 secrets:
   auth:
     file: /opt/secrets/auth
@@ -52,6 +51,10 @@ secrets:
     file: /opt/secrets/db_user
   log_lvl:
     file: /opt/secrets/log_lvl
+
+networks:
+  jakob-proxy:
+    external: true
 
 
 
