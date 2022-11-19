@@ -54,6 +54,7 @@ secrets:
 
 networks:
   jakob-proxy:
+    name: jakob-proxy
 
 
 
