@@ -35,7 +35,8 @@ services:
       - /var/www/jakob.wtf:/var/www
       - /etc/letsencrypt/:/etc/letsencrypt/
     networks:
-      jakob-proxy:
+      - jakob-proxy
+      - default
 secrets:
   auth:
     file: /opt/secrets/auth
