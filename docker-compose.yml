@@ -54,7 +54,6 @@ secrets:
 
 networks:
   jakob-proxy:
-    external: true
 
 
 
