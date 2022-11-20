@@ -33,7 +33,6 @@ services:
       - frontend
     volumes:
       - /var/www/jakob.wtf:/var/www
-      - /etc/letsencrypt/:/etc/letsencrypt/
     networks:
       - jakob-proxy
       - default
