@@ -75,6 +75,11 @@ module.exports = {
             hash: true
         }),
         new HtmlWebPackPlugin({
+            template: "./src/article-mystery-of-psychosomatic-symptoms.html",
+            filename: "./article-mystery-of-psychosomatic-symptoms.html",
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
             template: "./src/resources.html",
             filename: "./resources.html",
             hash: true
@@ -129,6 +134,18 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/articles/towards-a-more-stable-bitcoin-DE.html",
             filename: "./articles/src/towards-a-more-stable-bitcoin-DE.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/mystery-of-psychosomatic-symptoms-DE.html",
+            filename: "./articles/mystery-of-psychosomatic-symptoms-DE.html",
+            inject: false,
+            hash: true
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/articles/mystery-of-psychosomatic-symptoms-EN.html",
+            filename: "./articles/mystery-of-psychosomatic-symptoms-EN.html",
             inject: false,
             hash: true
         }),
