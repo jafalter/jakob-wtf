@@ -139,13 +139,13 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             template: "./src/articles/mystery-of-psychosomatic-symptoms-DE.html",
-            filename: "./articles/mystery-of-psychosomatic-symptoms-DE.html",
+            filename: "./articles/src/mystery-of-psychosomatic-symptoms-DE.html",
             inject: false,
             hash: true
         }),
         new HtmlWebPackPlugin({
             template: "./src/articles/mystery-of-psychosomatic-symptoms-EN.html",
-            filename: "./articles/mystery-of-psychosomatic-symptoms-EN.html",
+            filename: "./articles/src/mystery-of-psychosomatic-symptoms-EN.html",
             inject: false,
             hash: true
         }),
