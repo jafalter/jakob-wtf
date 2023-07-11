@@ -59,7 +59,7 @@ const renderArticle = async () => {
 
     window.imgCallback = () => {
         imagesLoaded++;
-        const allImagesLoaded = imagesLoaded === imagesCount;
+        const allImagesLoaded = imagesLoaded >= imagesCount;
         if(allImagesLoaded) {
             console.log("Initializing Reading State");
             // We can initialize the Reading State
